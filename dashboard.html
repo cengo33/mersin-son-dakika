@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mersin Manşet | Yazar Paneli</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Styling -->
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body class="dashboard-body">
+
+  <div class="dashboard-container">
+    
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar">
+      <a href="index.html" class="dash-logo">
+        <i class="fa-solid fa-newspaper"></i>
+        <span>Mersin Manşet</span>
+      </a>
+      <ul class="dash-menu">
+        <li class="dash-menu-item active">
+          <a href="#"><i class="fa-solid fa-plus"></i> Haber Ekle</a>
+        </li>
+        <li class="dash-menu-item">
+          <a href="index.html"><i class="fa-solid fa-home"></i> Siteye Dön</a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dash-content">
+      
+      <div class="dash-header">
+        <div>
+          <h1>Haber Giriş Paneli</h1>
+          <p style="color: var(--text-muted); margin: 4px 0 0 0; font-size: 14px;">Mersin Manşet haber portalı yönetim ve paylaşım arayüzü</p>
+        </div>
+        <a href="index.html" class="btn-view-site" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Canlı Siteyi Aç
+        </a>
+      </div>
+
+      <div class="dash-grid">
+        
+        <!-- LEFT: ADD NEWS FORM -->
+        <section class="dash-card">
+          <h2><i class="fa-solid fa-pen-nib"></i> Yeni Haber Yayınla</h2>
+          <form id="newsForm">
+            <div class="form-group">
+              <label for="title">Haber Başlığı</label>
+              <input type="text" id="title" class="form-control" placeholder="Örn: Mersin'de narenciye ihracatı rekor kırdı..." required />
+            </div>
+
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div>
+                <label for="category">Kategori</label>
+                <select id="category" class="form-control" required>
+                  <option value="Güncel">Güncel</option>
+                  <option value="Yerel">Yerel</option>
+                  <option value="Siyaset">Siyaset</option>
+                  <option value="Ekonomi">Ekonomi</option>
+                  <option value="Spor">Spor</option>
+                  <option value="Eğitim">Eğitim</option>
+                  <option value="Sağlık">Sağlık</option>
+                  <option value="Dünya">Dünya</option>
+                </select>
+              </div>
+              <div>
+                <label for="image">Görsel Seçimi (Demo Görseller)</label>
+                <select id="image" class="form-control" required>
+                  <option value="images/hero.png">Kentsel Dönüşüm Görseli (Hero)</option>
+                  <option value="images/news1.png">Pazar Fiyatları Görseli (Ekonomi)</option>
+                  <option value="images/news2.png">Belediye Meclisi Görseli (Siyaset)</option>
+                  <option value="images/news3.png">Mersin İdman Yurdu (Spor)</option>
+                  <option value="images/news4.png">Merkez Bankası Görseli (Finans)</option>
+                  <option value="images/news5.png">Mersin Plajı Görseli (Yaşam)</option>
+                  <option value="images/news6.png">Okul İnşaatı Görseli (Eğitim)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="excerpt">Kısa Özet (Facebook Gönderisinde Görünür)</label>
+              <input type="text" id="excerpt" class="form-control" placeholder="Haberin ilk cümleleri veya kısa açıklaması..." required />
+            </div>
+
+            <div class="form-group">
+              <label for="content">Haber İçeriği (Detaylar)</label>
+              <textarea id="content" class="form-control" placeholder="Haber detaylarını buraya giriniz..." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-checkbox">
+                <input type="checkbox" id="postToFb" checked />
+                <span>Haberi Facebook Sayfamda Otomatik Paylaş (www.facebook.com/halkompleksi33)</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <i class="fa-solid fa-paper-plane"></i> Haberi Yayınla ve Paylaş
+            </button>
+          </form>
+        </section>
+
+        <!-- RIGHT: FACEBOOK CONFIG & STATUS -->
+        <aside class="dash-card">
+          <h2><i class="fa-brands fa-facebook"></i> Facebook Entegrasyonu</h2>
+          <div class="widget-fb-info">
+            <div class="fb-badge">
+              <i class="fa-solid fa-link"></i> Hedef: <a href="https://www.facebook.com/halkompleksi33" class="fb-page-link" target="_blank">halkompleksi33</a>
+            </div>
+            <p>
+              Yayınlanan haberler otomatik olarak bu Facebook sayfasının duvarında paylaşılır.
+            </p>
+            <div style="border-top: 1px solid var(--border-dash); padding-top: 16px;">
+              <h4 style="font-size: 13px; color: #fff; margin-bottom: 8px;">⚙️ Gerçek Bağlantı Kurulumu:</h4>
+              <p style="font-size: 12px; line-height: 1.5;">
+                Real-time paylaşımın aktif olması için Netlify panelinizde **Environment Variables** (Ortam Değişkenleri) kısmına şu iki parametreyi eklemelisiniz:
+              </p>
+              <code style="display:block; background:#0f172a; padding:10px; border-radius:6px; margin:10px 0; font-size:11px; word-break:break-all; border:1px solid var(--border-dash);">
+                FACEBOOK_PAGE_ID = halkompleksi33<br>
+                FACEBOOK_PAGE_ACCESS_TOKEN = [TOKENİNİZ]
+              </code>
+              <p style="font-size: 11px; color:#38bdf8;">
+                *Not: Erişim jetonunu (Token) developers.facebook.com panelinden alabilirsiniz.
+              </p>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- BOTTOM: RECENTLY PUBLISHED ARTICLES -->
+      <section class="articles-table-wrap">
+        <h3>Eklenen Son Haberler</h3>
+        <div class="dash-card" style="padding: 10px;">
+          <table class="articles-table">
+            <thead>
+              <tr>
+                <th>Tarih</th>
+                <th>Başlık</th>
+                <th>Kategori</th>
+                <th>Facebook Paylaşımı</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="articlesList">
+              <!-- JS ile doldurulacak -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast">
+    <i class="fa-solid"></i>
+    <span id="toastMsg"></span>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const newsForm = document.getElementById('newsForm');
+      const articlesList = document.getElementById('articlesList');
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+
+      // Toast gösterici
+      function showToast(msg, isSuccess = true) {
+        toast.className = 'toast ' + (isSuccess ? 'toast-success show' : 'toast-error show');
+        toast.querySelector('i').className = 'fa-solid ' + (isSuccess ? 'fa-circle-check' : 'fa-circle-xmark');
+        toastMsg.textContent = msg;
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 4000);
+      }
+
+      // Haberleri LocalStorage'dan oku ve listele
+      function loadArticles() {
+        articlesList.innerHTML = '';
+        const news = JSON.parse(localStorage.getItem('local_news') || '[]');
+        
+        if (news.length === 0) {
+          articlesList.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Henüz eklenmiş haber bulunmuyor.</td></tr>`;
+          return;
+        }
+
+        news.reverse().forEach((item, index) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${item.date}</td>
+            <td style="font-weight: 600;">${item.title}</td>
+            <td><span class="badge-cat">${item.category}</span></td>
+            <td>
+              <span class="badge-status ${item.fbPosted ? 'status-posted' : 'status-local'}">
+                <i class="fa-solid ${item.fbPosted ? 'fa-check' : 'fa-hourglass'}"></i>
+                ${item.fbPosted ? 'Paylaşıldı' : 'Sadece Sitede'}
+              </span>
+            </td>
+            <td>
+              <button onclick="deleteArticle(${news.length - 1 - index})" style="background:none; border:none; color:var(--primary); cursor:pointer;" title="Haberi Sil">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </td>
+          `;
+          articlesList.appendChild(tr);
+        });
+      }
+
+      // Haber silme
+      window.deleteArticle = function(index) {
+        const news = JSON.parse(localStorage.getItem('local_news') || '[]');
+        news.splice(index, 1);
+        localStorage.setItem('local_news', JSON.stringify(news));
+        loadArticles();
+        showToast('Haber başarıyla silindi!');
+      };
+
+      // Form Gönderme
+      newsForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const title = document.getElementById('title').value.trim();
+        const category = document.getElementById('category').value;
+        const image = document.getElementById('image').value;
+        const excerpt = document.getElementById('excerpt').value.trim();
+        const content = document.getElementById('content').value.trim();
+        const postToFb = document.getElementById('postToFb').checked;
+
+        const newArticle = {
+          title,
+          category,
+          image,
+          excerpt,
+          content,
+          date: new Date().toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+          fbPosted: false
+        };
+
+        // Facebook API'ye gönder (Eğer seçildiyse)
+        if (postToFb) {
+          showToast('Facebook sayfasına yükleniyor...', true);
+          try {
+            const response = await fetch('/api/post-to-facebook', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                title: title,
+                excerpt: excerpt,
+                url: window.location.origin
+              })
+            });
+
+            const result = await response.json();
+            
+            if (result.success) {
+              newArticle.fbPosted = true;
+              showToast('Haber sitede yayınlandı ve Facebook\'ta paylaşıldı! 🎉');
+            } else {
+              // Eğer API Jetonu ayarlanmadıysa (Netlify varsayılan veya yerel test)
+              newArticle.fbPosted = false;
+              showToast(result.message || 'Haber yayınlandı. Facebook jetonu eksik olduğundan paylaşım simüle edildi.', false);
+            }
+          } catch (err) {
+            newArticle.fbPosted = false;
+            showToast('Yerel test modu: Haber sitenizde yayına girdi!', true);
+          }
+        } else {
+          showToast('Haber sitede yayınlandı (Facebook paylaşımı kapalı).');
+        }
+
+        // LocalStorage'a Kaydet
+        const news = JSON.parse(localStorage.getItem('local_news') || '[]');
+        news.push(newArticle);
+        localStorage.setItem('local_news', JSON.stringify(news));
+
+        // Formu temizle ve listeyi yenile
+        newsForm.reset();
+        loadArticles();
+      });
+
+      // İlk yükleme
+      loadArticles();
+    });
+  </script>
+</body>
+</html>

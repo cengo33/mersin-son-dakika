@@ -251,4 +251,82 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setInterval(simulateKurUpdate, 8000);
 
+    // === DİNAMİK HABER YÜKLEME (LocalStorage) ===
+    function loadLocalNews() {
+        const localNews = JSON.parse(localStorage.getItem('local_news') || '[]');
+        if (localNews.length === 0) return;
+
+        localNews.forEach(item => {
+            // Grid tabanlı haber kartı şablonu (Güncel, Ekonomi, Dünya)
+            const createGridCard = (news) => {
+                const card = document.createElement('article');
+                card.className = 'news-card';
+                card.innerHTML = `
+                    <a href="#">
+                        <div class="news-card-img-wrap">
+                            <img src="${news.image}" alt="${news.title}" class="news-card-img" width="400" height="270" loading="lazy" />
+                            <span class="news-card-cat">${news.category}</span>
+                        </div>
+                        <div class="news-card-body">
+                            <h3>${news.title}</h3>
+                            <p class="news-card-excerpt" style="font-size:13px; color:var(--text-light); line-height:1.6; margin-bottom:14px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${news.excerpt}</p>
+                            <div class="news-card-meta">
+                                <span><i class="fa-regular fa-clock"></i> ${news.date}</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+                return card;
+            };
+
+            // Liste tabanlı haber şablonu (Spor, Eğitim, Sağlık)
+            const createListItem = (news, isCompact = false) => {
+                const article = document.createElement('article');
+                article.className = `news-list-item${isCompact ? ' compact' : ''}`;
+                article.innerHTML = `
+                    <a href="#">
+                        <img src="${news.image}" alt="${news.title}" width="${isCompact ? '100' : '130'}" height="${isCompact ? '70' : '90'}" loading="lazy" />
+                        <div class="news-list-text">
+                            ${isCompact ? '' : `<span class="list-cat">${news.category}</span>`}
+                            <h3>${news.title}</h3>
+                            <span class="list-time"><i class="fa-regular fa-clock"></i> ${news.date}</span>
+                        </div>
+                    </a>
+                `;
+                return article;
+            };
+
+            // Kategorisine göre ilgili bölüme ekle
+            if (item.category === 'Güncel' || item.category === 'Yerel' || item.category === 'Siyaset') {
+                const grid = document.querySelector('#section-guncel .news-grid');
+                if (grid) {
+                    const firstChild = grid.children[0];
+                    const card = createGridCard(item);
+                    if (firstChild && firstChild.classList.contains('news-card-large')) {
+                        firstChild.after(card);
+                    } else {
+                        grid.prepend(card);
+                    }
+                }
+            } else if (item.category === 'Ekonomi') {
+                const grid = document.querySelector('#section-ekonomi .news-grid');
+                if (grid) grid.prepend(createGridCard(item));
+            } else if (item.category === 'Dünya') {
+                const grid = document.querySelector('#section-dunya .news-grid');
+                if (grid) grid.prepend(createGridCard(item));
+            } else if (item.category === 'Spor') {
+                const list = document.querySelector('#section-spor .news-list');
+                if (list) list.prepend(createListItem(item, false));
+            } else if (item.category === 'Eğitim') {
+                const list = document.querySelector('#egitim-block .news-list');
+                if (list) list.prepend(createListItem(item, true));
+            } else if (item.category === 'Sağlık') {
+                const list = document.querySelector('#saglik-block .news-list');
+                if (list) list.prepend(createListItem(item, true));
+            }
+        });
+    }
+    loadLocalNews();
+
 });
+

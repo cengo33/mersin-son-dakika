@@ -348,7 +348,8 @@
             document.getElementById('content').value = content;
             showToast('Yapay Zeka haberi yazdı! Lütfen kontrol edin.', true);
           } else {
-            showToast('Yapay zeka haber üretimi başarısız oldu.', false);
+            const errorMsg = result.error ? (typeof result.error === 'object' ? (result.error.message || JSON.stringify(result.error)) : result.error) : 'Sunucu yanıt vermedi';
+            showToast('Yapay zeka haber üretimi başarısız oldu: ' + errorMsg, false);
           }
         } catch (error) {
           showToast('Lokal Mod: Simüle edilmiş haber başlıkları dolduruldu.', true);

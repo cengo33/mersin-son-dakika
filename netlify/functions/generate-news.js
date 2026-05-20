@@ -1,3 +1,39 @@
+const https = require('https');
+
+function postRequest(url, bodyData) {
+  return new Promise((resolve, reject) => {
+    const urlObj = new URL(url);
+    const options = {
+      hostname: urlObj.hostname,
+      path: urlObj.pathname + urlObj.search,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let responseBody = '';
+      res.on('data', (chunk) => {
+        responseBody += chunk;
+      });
+      res.on('end', () => {
+        resolve({
+          statusCode: res.statusCode,
+          body: responseBody
+        });
+      });
+    });
+
+    req.on('error', (err) => {
+      reject(err);
+    });
+
+    req.write(JSON.stringify(bodyData));
+    req.end();
+  });
+}
+
 exports.handler = async function(event, context) {
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -33,7 +69,6 @@ exports.handler = async function(event, context) {
 
     // Eğer Gemini API anahtarı girilmediyse, simüle edilmiş yapay zeka yanıtı döndür
     if (!apiKey) {
-      // 3 saniye yapay zeka beklemesini simüle edelim
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       return {
@@ -52,7 +87,7 @@ exports.handler = async function(event, context) {
       };
     }
 
-    // Base64 verisini temizle (Örn: "data:image/jpeg;base64,/9j/..." -> sadece "/9j/...")
+    // Base64 verisini temizle
     const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
 
     // Gemini API 1.5 Flash çağrısı
@@ -60,38 +95,40 @@ exports.handler = async function(event, context) {
 
     const prompt = "Sen Mersin bölgesinde yayın yapan deneyimli ve tarafsız bir gazetecisin. Sana gönderilen bu görseli analiz et ve görselle doğrudan ilişkili, profesyonel bir haber oluştur. Başlık mutlaka ilgi çekici ve Mersin odaklı olsun. Yanıtı sadece ve sadece aşağıdaki şablona uygun bir JSON dosyası olarak döndür. Başka hiçbir şey yazma, markdown bloğu (```json) kullanma, doğrudan JSON formatında başla ve bitir:\n{\n  \"title\": \"Haber Başlığı\",\n  \"category\": \"Kategori (Güncel, Yerel, Siyaset, Ekonomi, Spor, Eğitim, Sağlık değerlerinden biri olmak zorunda)\",\n  \"excerpt\": \"Haberin 1-2 cümlelik kısa özeti\",\n  \"content\": \"Haberin detaylı metni (en az 2-3 paragraf olmalı ve haber yazım kurallarına uygun olmalıdır)\"\n}";
 
-    const response = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        contents: [
-          {
-            parts: [
-              { text: prompt },
-              {
-                inlineData: {
-                  mimeType: "image/jpeg",
-                  data: base64Data
-                }
+    const apiResponse = await postRequest(geminiUrl, {
+      contents: [
+        {
+          parts: [
+            { text: prompt },
+            {
+              inlineData: {
+                mimeType: "image/jpeg",
+                data: base64Data
               }
-            ]
-          }
-        ],
-        generationConfig: {
-          responseMimeType: "application/json"
+            }
+          ]
         }
-      })
+      ],
+      generationConfig: {
+        responseMimeType: "application/json"
+      }
     });
 
-    const result = await response.json();
+    const result = JSON.parse(apiResponse.body);
 
     if (result.error) {
       return {
         statusCode: 400,
         headers,
         body: JSON.stringify({ success: false, error: result.error })
+      };
+    }
+
+    if (!result.candidates || result.candidates.length === 0) {
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ success: false, error: "Yapay zeka geçerli bir içerik üretemedi. (Candidates is empty)" })
       };
     }
 

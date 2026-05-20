@@ -20,18 +20,10 @@ export async function onRequestPost(context) {
     const apiKey = env.GEMINI_API_KEY;
 
     if (!apiKey) {
-      // Mock response if API key is missing
-      await new Promise(resolve => setTimeout(resolve, 2000));
       return new Response(JSON.stringify({
-        success: true,
-        simulated: true,
-        data: {
-          title: "Mersin Limanı'nda Dev Yatırım: Kapasite Yüzde 30 Artırılıyor",
-          category: "Ekonomi",
-          excerpt: "Mersin Uluslararası Limanı (MIP), kentin ekonomisine büyük katkı sağlayacak yeni genişleme projesini başlattı. Yatırım ile liman kapasitesi önemli oranda artacak.",
-          content: "Mersin ekonomisinin can damarı olan Mersin Uluslararası Limanı (MIP), kapasite artırımı ve rıhtım genişletme çalışmalarına resmen başladı. Kent protokolünün katılımıyla gerçekleştirilen törende, projenin detayları paylaşıldı.\n\nYaklaşık 450 milyon dolarlık bütçeyle hayata geçirilecek yatırım sayesinde liman, dünyanın en büyük konteyner gemilerine aynı anda hizmet verebilecek hale gelecek. Genişletme çalışmaları kapsamında yüzlerce Mersinli gence de yeni istihdam imkanı sağlanması hedefleniyor.\n\nİl protokol üyeleri yaptıkları konuşmada, bu yatırımın sadece Mersin için değil, Doğu Akdeniz havzası ve tüm Türkiye dış ticareti için kritik bir kilometre taşı olduğunu vurguladı. Projenin önümüzdeki yılın son çeyreğinde tamamlanarak hizmete girmesi planlanıyor."
-        }
-      }), { status: 200, headers });
+        success: false,
+        error: "Sistemde Gemini API anahtarı tanımlanmamış. Lütfen Cloudflare panelinden GEMINI_API_KEY değişkenini ekleyin."
+      }), { status: 400, headers });
     }
 
     const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");

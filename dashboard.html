@@ -352,12 +352,7 @@
             showToast('Yapay zeka haber üretimi başarısız oldu: ' + errorMsg, false);
           }
         } catch (error) {
-          showToast('Lokal Mod: Simüle edilmiş haber başlıkları dolduruldu.', true);
-          // Local/Simülasyon modunda test verisi doldur
-          document.getElementById('title').value = "Mersin Limanı'nda Dev Yatırım: Kapasite Yüzde 30 Artırılıyor";
-          document.getElementById('category').value = "Ekonomi";
-          document.getElementById('excerpt').value = "Mersin Uluslararası Limanı (MIP), kentin ekonomisine büyük katkı sağlayacak yeni genişleme projesini başlattı.";
-          document.getElementById('content').value = "Mersin ekonomisinin can damarı olan Mersin Uluslararası Limanı (MIP), kapasite artırımı ve rıhtım genişletme çalışmalarına resmen başladı. Yaklaşık 450 milyon dolarlık bütçeyle hayata geçirilecek yatırım sayesinde liman, dünyanın en büyük konteyner gemilerine aynı anda hizmet verebilecek hale gelecek.\n\nİl protokol üyeleri yaptıkları konuşmada, bu yatırımın sadece Mersin için değil, Doğu Akdeniz havzası ve tüm Türkiye dış ticareti için kritik bir kilometre taşı olduğunu vurguladı. Projenin önümüzdeki yılın son çeyreğinde tamamlanarak hizmete girmesi planlanıyor.";
+          showToast('Yapay zeka haber üretimi başarısız oldu: Sunucuya bağlanılamadı.', false);
         } finally {
           aiLoadingOverlay.style.display = 'none';
         }
@@ -454,7 +449,7 @@
             }
           } catch (err) {
             newArticle.fbPosted = false;
-            showToast('Lokal Mod: Haber sitenizde yayına girdi!', true);
+            showToast('Bağlantı hatası: Haber sitenizde yayına girdi ancak Facebook\'a gönderilemedi.', false);
           }
         } else {
           showToast('Haber sitede yayınlandı (Facebook paylaşımı kapalı).');

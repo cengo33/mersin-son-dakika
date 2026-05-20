@@ -18,8 +18,8 @@ export async function onRequestPost(context) {
     if (!pageToken) {
       return new Response(JSON.stringify({
         success: false,
-        message: 'Haber başarıyla kaydedildi! Ancak Cloudflare panelinde FACEBOOK_PAGE_ACCESS_TOKEN tanımlanmadığı için gerçek Facebook sayfasına gönderilemedi. (Lokal test modu aktif)'
-      }), { status: 200, headers });
+        error: "Sistemde Facebook Jetonu tanımlanmamış. Lütfen Cloudflare panelinden FACEBOOK_PAGE_ACCESS_TOKEN değişkenini ekleyin."
+      }), { status: 400, headers });
     }
 
     const postMessage = `${title}\n\n${excerpt}\n\nDetaylar: ${url || 'https://mersinmanset.tr'}`;

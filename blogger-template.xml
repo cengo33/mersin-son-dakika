@@ -13,7 +13,7 @@
   <!-- Open Graph -->
   <meta content='website' property='og:type'/>
   <meta expr:content='data:blog.pageTitle' property='og:title'/>
-  <meta content='Mersin Son Dakika' property='og:site_name'/>
+  <meta content='Mersin Manşet' property='og:site_name'/>
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Merriweather:wght@400;700;900&amp;display=swap' rel='stylesheet'/>
@@ -22,7 +22,7 @@
 
   <b:skin><![CDATA[
 /* ========================================
-   MERSİN SON DAKİKA - Premium News CSS
+   MERSİN MANŞET - Premium News CSS
    ======================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -358,7 +358,7 @@ ul, ol { list-style: none; }
           <span class='logo-icon'><i class='fa-solid fa-newspaper'/></span>
           <div class='logo-text'>
             <span class='logo-main'>MERSİN</span>
-            <span class='logo-sub'>SON DAKİKA</span>
+            <span class='logo-sub'>MANŞET</span>
           </div>
         </a>
         <div class='search-box'>
@@ -576,10 +576,10 @@ ul, ol { list-style: none; }
             <span class='logo-icon' style='width:42px;height:42px;font-size:18px;'><i class='fa-solid fa-newspaper'/></span>
             <div class='logo-text'>
               <span class='logo-main' style='font-size:18px;'>MERSİN</span>
-              <span class='logo-sub' style='font-size:11px;'>SON DAKİKA</span>
+              <span class='logo-sub' style='font-size:11px;'>MANŞET</span>
             </div>
           </div>
-          <p>Mersin Son Dakika ile gelişmeleri anında öğrenin! Mersin ve ilçelerinden son dakika haberler.</p>
+          <p>Mersin Manşet ile gelişmeleri anında öğrenin! Mersin ve ilçelerinden son dakika haberler.</p>
           <div class='footer-social'>
             <a aria-label='Facebook' href='#'><i class='fa-brands fa-facebook-f'/></a>
             <a aria-label='Twitter' href='#'><i class='fa-brands fa-x-twitter'/></a>
@@ -621,8 +621,8 @@ ul, ol { list-style: none; }
   <div class='footer-bottom'>
     <div class='container'>
       <div class='footer-bottom-inner'>
-        <p>&#169; <span id='footerYear'/> Mersin Son Dakika. Tüm hakları saklıdır.</p>
-        <p>Mersin Son Dakika &#174; | <a href='/p/iletisim.html'>İletişim</a></p>
+        <p>&#169; <span id='footerYear'/> Mersin Manşet. Tüm hakları saklıdır.</p>
+        <p>Mersin Manşet &#174; | <a href='/p/iletisim.html'>İletişim</a></p>
       </div>
     </div>
   </div>

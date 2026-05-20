@@ -17,42 +17,44 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ error: 'base64Image parameter is required' }), { status: 400, headers });
     }
 
-    const apiKey = env.GEMINI_API_KEY;
+    const apiKey = env.OPENAI_API_KEY;
 
     if (!apiKey) {
       return new Response(JSON.stringify({
         success: false,
-        error: "Sistemde Gemini API anahtarı tanımlanmamış. Lütfen Cloudflare panelinden GEMINI_API_KEY değişkenini ekleyin."
+        error: "Sistemde OpenAI (ChatGPT) API anahtarı tanımlanmamış. Lütfen Cloudflare panelinden OPENAI_API_KEY değişkenini ekleyin."
       }), { status: 400, headers });
     }
 
-    const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    // OpenAI API çağrısı
+    const openAiUrl = 'https://api.openai.com/v1/chat/completions';
 
-    const prompt = "Sen Mersin bölgesinde yayın yapan deneyimli ve tarafsız bir gazetecisin. Sana gönderilen bu görseli analiz et ve görselle doğrudan ilişkili, profesyonel bir haber oluştur. Başlık mutlaka ilgi çekici ve Mersin odaklı olsun. Yanıtı sadece ve sadece aşağıdaki şablona uygun bir JSON dosyası olarak döndür. Başka hiçbir şey yazma, markdown bloğu (```json) kullanma, doğrudan JSON formatında başla ve bitir:\n{\n  \"title\": \"Haber Başlığı\",\n  \"category\": \"Kategori (Güncel, Yerel, Siyaset, Ekonomi, Spor, Eğitim, Sağlık değerlerinden biri olmak zorunda)\",\n  \"excerpt\": \"Haberin 1-2 cümlelik kısa özeti\",\n  \"content\": \"Haberin detaylı metni (en az 2-3 paragraf olmalı ve haber yazım kurallarına uygun olmalıdır)\"\n}";
+    const prompt = "Sen Mersin bölgesinde yayın yapan deneyimli ve tarafsız bir gazetecisin. Sana gönderilen bu görseli analiz et ve görselle doğrudan ilişkili, profesyonel bir haber oluştur. Başlık mutlaka ilgi çekici ve Mersin odaklı olsun. Yanıtı sadece ve sadece aşağıdaki şablona uygun bir JSON dosyası olarak döndür. Başka hiçbir şey yazma, markdown bloğu (```json) kullanma:\n{\n  \"title\": \"Haber Başlığı\",\n  \"category\": \"Kategori (Güncel, Yerel, Siyaset, Ekonomi, Spor, Eğitim, Sağlık değerlerinden biri olmak zorunda)\",\n  \"excerpt\": \"Haberin 1-2 cümlelik kısa özeti\",\n  \"content\": \"Haberin detaylı metni (en az 2-3 paragraf olmalı ve haber yazım kurallarına uygun olmalıdır)\"\n}";
 
-    const response = await fetch(geminiUrl, {
+    // Frontend zaten "data:image/jpeg;base64,..." şeklinde gönderiyor.
+    const response = await fetch(openAiUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        contents: [
+        model: "gpt-4o-mini",
+        response_format: { type: "json_object" },
+        messages: [
           {
-            parts: [
-              { text: prompt },
+            role: "user",
+            content: [
+              { type: "text", text: prompt },
               {
-                inlineData: {
-                  mimeType: "image/jpeg",
-                  data: base64Data
+                type: "image_url",
+                image_url: {
+                  url: base64Image
                 }
               }
             ]
           }
-        ],
-        generationConfig: {
-          responseMimeType: "application/json"
-        }
+        ]
       })
     });
 
@@ -62,11 +64,11 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ success: false, error: result.error }), { status: 400, headers });
     }
 
-    if (!result.candidates || result.candidates.length === 0) {
+    if (!result.choices || result.choices.length === 0) {
       return new Response(JSON.stringify({ success: false, error: "Yapay zeka geçerli bir içerik üretemedi." }), { status: 500, headers });
     }
 
-    const textOutput = result.candidates[0].content.parts[0].text;
+    const textOutput = result.choices[0].message.content;
     const generatedData = JSON.parse(textOutput);
 
     return new Response(JSON.stringify({

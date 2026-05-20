@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <title>Mersin Son Dakika | Mersin'den Haberiniz Olsun!</title>
+    <meta name="title" content="Mersin Son Dakika | Mersin'den Haberiniz Olsun!" />
+    <meta name="description" content="Mersin'den haberiniz olsun! Mersin ve ilçelerinden son dakika ve önemli haberler, gelişmeler." />
+    <meta name="keywords" content="mersin, mersin haber, mersin haberleri, son dakika mersin, yerel haberler" />
+    <link rel="canonical" href="#" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mersin Son Dakika" />
+    <meta property="og:description" content="Mersin'den haberiniz olsun!" />
+    <meta property="og:site_name" content="Mersin Son Dakika" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- SON DAKİKA TICKER -->
+<div id="son-dakika" class="son-dakika">
+    <div class="son-dakika-inner">
+        <span class="sd-badge">
+            <i class="fa-solid fa-bolt"></i> SON DAKİKA
+        </span>
+        <div class="sd-ticker-wrap">
+            <div class="sd-ticker" id="sdTicker">
+                <span>Mersin'de deniz ulaşımı seferler 15 Haziran'a kadar uzatıldı &nbsp;•&nbsp;</span>
+                <span>Tarsus'ta altyapı çalışmaları tamamlandı, yollar açıldı &nbsp;•&nbsp;</span>
+                <span>Silifke Göksu'da sel baskınları sonrası hasar tespiti başladı &nbsp;•&nbsp;</span>
+                <span>Büyükşehir Belediyesi yeni kreş açılışını duyurdu &nbsp;•&nbsp;</span>
+                <span>Erdemli'de fırtına hayatı olumsuz etkiledi, ekipler sahada &nbsp;•&nbsp;</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+    <!-- Üst bar: tarih, sosyal medya -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-inner">
+                <div class="top-bar-left">
+                    <span><i class="fa-regular fa-calendar-days"></i> <span id="currentDate"></span></span>
+                    <span><i class="fa-solid fa-temperature-half"></i> 28°C Mersin</span>
+                    <span class="weather-detail"><i class="fa-solid fa-sun"></i> Açık</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" id="fb-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" id="tw-link" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" id="yt-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" id="ig-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" id="rss-link" aria-label="RSS" class="rss-btn"><i class="fa-solid fa-rss"></i> RSS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo & Arama -->
+    <div class="logo-bar">
+        <div class="container">
+            <div class="logo-bar-inner">
+                <a href="#" class="site-logo" id="site-logo">
+                    <span class="logo-icon"><i class="fa-solid fa-newspaper"></i></span>
+                    <div class="logo-text">
+                        <span class="logo-main">MERSİN</span>
+                        <span class="logo-sub">SON DAKİKA</span>
+                    </div>
+                </a>
+                <div class="logo-bar-center">
+                    <!-- Banner alanı -->
+                    <div class="header-ad">
+                        <span>Reklam Alanı</span>
+                    </div>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Haber ara..." aria-label="Haber ara" />
+                    <button id="search-btn" aria-label="Ara"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVİGASYON -->
+    <nav class="main-nav" role="navigation" aria-label="Ana Menü">
+        <div class="container">
+            <button class="hamburger" id="hamburger" aria-label="Menü" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu" role="list">
+                <li class="nav-item active"><a href="#" class="nav-link" id="nav-anasayfa">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-guncel">Güncel</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-yerel">Yerel</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-siyaset">Siyaset</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-ekonomi">Ekonomi</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-spor">Spor</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-egitim">Eğitim</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-saglik">Sağlık</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-teknoloji">Teknoloji</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-dunya">Dünya</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link" id="nav-ilceler">İlçeler <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu" role="list">
+                        <li><a href="#" id="nav-akdeniz">Akdeniz</a></li>
+                        <li><a href="#" id="nav-mezitli">Mezitli</a></li>
+                        <li><a href="#" id="nav-toroslar">Toroslar</a></li>
+                        <li><a href="#" id="nav-yenisehir">Yenişehir</a></li>
+                        <li><a href="#" id="nav-tarsus">Tarsus</a></li>
+                        <li><a href="#" id="nav-silifke">Silifke</a></li>
+                        <li><a href="#" id="nav-erdemli">Erdemli</a></li>
+                        <li><a href="#" id="nav-anamur">Anamur</a></li>
+                        <li><a href="#" id="nav-mut">Mut</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-video"><a href="#" class="nav-link" id="nav-video"><i class="fa-solid fa-video"></i> Video</a></li>
+                <li class="nav-item nav-galeri"><a href="#" class="nav-link" id="nav-galeri"><i class="fa-regular fa-images"></i> Galeri</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main id="main-content">
+    <div class="container">
+        <div class="content-grid">
+
+            <!-- SOL SÜTUN (Ana içerik) -->
+            <div class="main-col">
+
+                <!-- MANŞET CAROUSEL -->
+                <section class="hero-carousel" aria-label="Manşet Haberler">
+                    <div class="carousel-container" id="carousel">
+                        <div class="carousel-track" id="carouselTrack">
+
+                            <!-- Slide 1 -->
+                            <div class="carousel-slide" data-index="0">
+                                <a href="#" id="slide1-link">
+                                    <div class="slide-img-wrap">
+                                        <img src="images/hero.png" alt="Mersin'de yeni kentsel dönüşüm projesi başlatıldı" class="slide-img" width="960" height="540" />
+                                        <div class="slide-overlay"></div>
+                                    </div>
+                                    <div class="slide-caption">
+                                        <span class="slide-category">Yerel</span>
+                                        <h2>Mersin'de Yeni Kentsel Dönüşüm Projesi Başlatıldı: 12 Bin Konut Yenilenecek</h2>
+                                        <span class="slide-time"><i class="fa-regular fa-clock"></i> 2 saat önce</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="carousel-slide" data-index="1">
+                                <a href="#" id="slide2-link">
+                                    <div class="slide-img-wrap">
+                                        <img src="images/news1.png" alt="Çarşamba pazarında fiyatlar artıyor" class="slide-img" width="960" height="540" />
+                                        <div class="slide-overlay"></div>
+                                    </div>
+                                    <div class="slide-caption">
+                                        <span class="slide-category">Ekonomi</span>
+                                        <h2>Mersin Pazarında Bu Hafta Sebze Fiyatları Düşüşe Geçti</h2>
+                                        <span class="slide-time"><i class="fa-regular fa-clock"></i> 3 saat önce</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="carousel-slide" data-index="2">
+                                <a href="#" id="slide3-link">
+                                    <div class="slide-img-wrap">
+                                        <img src="images/news2.png" alt="Büyükşehir meclis kararları" class="slide-img" width="960" height="540" />
+                                        <div class="slide-overlay"></div>
+                                    </div>
+                                    <div class="slide-caption">
+                                        <span class="slide-category">Siyaset</span>
+                                        <h2>Mersin Büyükşehir Belediye Meclisi Haziran Ayı Toplantısını Gerçekleştirdi</h2>
+                                        <span class="slide-time"><i class="fa-regular fa-clock"></i> 5 saat önce</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="carousel-slide" data-index="3">
+                                <a href="#" id="slide4-link">
+                                    <div class="slide-img-wrap">
+                                        <img src="images/news3.png" alt="Mersin'de spor haberleri" class="slide-img" width="960" height="540" />
+                                        <div class="slide-overlay"></div>
+                                    </div>
+                                    <div class="slide-caption">
+                                        <span class="slide-category">Spor</span>
+                                        <h2>Mersin İdman Yurdu Ligde Galibiyetle Başladı: Taraftarlar Çılgına Döndü</h2>
+                                        <span class="slide-time"><i class="fa-regular fa-clock"></i> 6 saat önce</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 5 -->
+                            <div class="carousel-slide" data-index="4">
+                                <a href="#" id="slide5-link">
+                                    <div class="slide-img-wrap">
+                                        <img src="images/news5.png" alt="Mersin sahilleri turizm sezonu" class="slide-img" width="960" height="540" />
+                                        <div class="slide-overlay"></div>
+                                    </div>
+                                    <div class="slide-caption">
+                                        <span class="slide-category">Yaşam</span>
+                                        <h2>Mersin Sahilleri Yaz Sezonu İçin Hazır: Tatilciler Akın Ediyor</h2>
+                                        <span class="slide-time"><i class="fa-regular fa-clock"></i> 8 saat önce</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Önceki">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Sonraki">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+                        <!-- Indicators -->
+                        <div class="carousel-indicators" id="carouselIndicators">
+                            <button class="indicator active" data-slide="0" id="ind0" aria-label="Slide 1"></button>
+                            <button class="indicator" data-slide="1" id="ind1" aria-label="Slide 2"></button>
+                            <button class="indicator" data-slide="2" id="ind2" aria-label="Slide 3"></button>
+                            <button class="indicator" data-slide="3" id="ind3" aria-label="Slide 4"></button>
+                            <button class="indicator" data-slide="4" id="ind4" aria-label="Slide 5"></button>
+                        </div>
+                    </div>
+
+                    <!-- Yan haberler -->
+                    <div class="hero-side-news">
+                        <a href="#" class="side-news-item" id="side1">
+                            <img src="images/news4.png" alt="Ekonomi haberi" width="120" height="80" />
+                            <div class="side-news-text">
+                                <span class="side-cat">Ekonomi</span>
+                                <p>Merkez Bankası Faiz Kararını Açıkladı: Piyasalar Coştu</p>
+                                <span class="side-time"><i class="fa-regular fa-clock"></i> 1s</span>
+                            </div>
+                        </a>
+                        <a href="#" class="side-news-item" id="side2">
+                            <img src="images/news6.png" alt="Eğitim haberi" width="120" height="80" />
+                            <div class="side-news-text">
+                                <span class="side-cat">Eğitim</span>
+                                <p>Mersin'de 45 Yeni Okul İnşaatı Başlıyor, 20 Bin Öğrenci Faydalanacak</p>
+                                <span class="side-time"><i class="fa-regular fa-clock"></i> 2s</span>
+                            </div>
+                        </a>
+                        <a href="#" class="side-news-item" id="side3">
+                            <img src="images/news3.png" alt="Spor haberi" width="120" height="80" />
+                            <div class="side-news-text">
+                                <span class="side-cat">Spor</span>
+                                <p>Mersin Gençlik Turnuvası Sona Erdi: İşte Şampiyonlar</p>
+                                <span class="side-time"><i class="fa-regular fa-clock"></i> 3s</span>
+                            </div>
+                        </a>
+                        <a href="#" class="side-news-item" id="side4">
+                            <img src="images/news5.png" alt="Yaşam haberi" width="120" height="80" />
+                            <div class="side-news-text">
+                                <span class="side-cat">Yaşam</span>
+                                <p>Akdeniz'in Altın Meyvesi "Yenidünya" Tezgaha İndi!</p>
+                                <span class="side-time"><i class="fa-regular fa-clock"></i> 4s</span>
+                            </div>
+                        </a>
+                        <a href="#" class="side-news-item" id="side5">
+                            <img src="images/news2.png" alt="Siyaset haberi" width="120" height="80" />
+                            <div class="side-news-text">
+                                <span class="side-cat">Siyaset</span>
+                                <p>Vali Toros'tan Kritik Açıklama: Kışlık Hazırlıklar Başladı</p>
+                                <span class="side-time"><i class="fa-regular fa-clock"></i> 5s</span>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- GÜNCEL HABERLER BÖLÜMÜ -->
+                <section class="news-section" id="section-guncel">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>Güncel</span></h2>
+                        <a href="#" class="see-all" id="guncel-all">Tümünü Gör <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="news-grid">
+
+                        <!-- Büyük haber -->
+                        <article class="news-card news-card-large" id="guncel1">
+                            <a href="#">
+                                <div class="news-card-img-wrap">
+                                    <img src="images/news1.png" alt="Mersin'de gece yarısı deprem" class="news-card-img" width="600" height="400" loading="lazy" />
+                                    <span class="news-card-cat">Güncel</span>
+                                </div>
+                                <div class="news-card-body">
+                                    <h3>Mersin Açıklarında 4.2 Büyüklüğünde Deprem: AFAD İlk Açıklamayı Yaptı</h3>
+                                    <p class="news-card-excerpt">Mersin açıklarında gece saatlerinde 4.2 büyüklüğünde bir deprem meydana geldi. AFAD yetkililerinden ilk açıklama geldi...</p>
+                                    <div class="news-card-meta">
+                                        <span><i class="fa-regular fa-clock"></i> 14 dakika önce</span>
+                                        <span><i class="fa-regular fa-eye"></i> 2.4B görüntülenme</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+
+                        <!-- Küçük haberler -->
+                        <article class="news-card" id="guncel2">
+                            <a href="#">
+                                <div class="news-card-img-wrap">
+                                    <img src="images/news2.png" alt="Haber 2" class="news-card-img" width="400" height="270" loading="lazy" />
+                                    <span class="news-card-cat">Asayiş</span>
+                                </div>
+                                <div class="news-card-body">
+                                    <h3>Tarsus'ta Çıkan Yangın Kısa Sürede Söndürüldü, Can Kaybı Yok</h3>
+                                    <div class="news-card-meta">
+                                        <span><i class="fa-regular fa-clock"></i> 45 dakika önce</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="news-card" id="guncel3">
+                            <a href="#">
+                                <div class="news-card-img-wrap">
+                                    <img src="images/news5.png" alt="Haber 3" class="news-card-img" width="400" height="270" loading="lazy" />
+                                    <span class="news-card-cat">Yaşam</span>
+                                </div>
+                                <div class="news-card-body">
+                                    <h3>Mersin'de 35 Dereceyi Aşan Sıcaklıklar: Uzmanlar Uyardı</h3>
+                                    <div class="news-card-meta">
+                                        <span><i class="fa-regular fa-clock"></i> 1 saat önce</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="news-card" id="guncel4">
+                            <a href="#">
+                                <div class="news-card-img-wrap">
+                                    <img src="images/news4.png" alt="Haber 4" class="news-card-img" width="400" height="270" loading="lazy" />
+                                    <span class="news-card-cat">Ekonomi</span>
+                                </div>
+                                <div class="news-card-body">
+                                    <h3>Mersin Limanı Mayıs Ayında Rekor İhracat Rakamına Ulaştı</h3>
+                                    <div class="news-card-meta">
+                                        <span><i class="fa-regular fa-clock"></i> 2 saat önce</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+
+                    </div>
+                </section>
+
+                <!-- REKLAM BANDI -->
+                <div class="ad-banner" role="complementary" aria-label="Reklam">
+                    <span>Reklam</span>
+                </div>
+
+                <!-- SPOR BÖLÜMÜ -->
+                <section class="news-section" id="section-spor">
+                    <div class="section-header">
+                        <h2 class="section-title spor"><span>Spor</span></h2>
+                        <a href="#" class="see-all" id="spor-all">Tümünü Gör <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="news-list">
+                        <article class="news-list-item" id="spor1">
+                            <a href="#">
+                                <img src="images/news3.png" alt="Spor haberi 1" width="130" height="90" loading="lazy" />
+                                <div class="news-list-text">
+                                    <span class="list-cat spor-cat">Spor</span>
+                                    <h3>Mersin İdman Yurdu 3. Lig'de Şampiyonluğa Koşuyor: Son 3 Maçta 9 Puan</h3>
+                                    <span class="list-time"><i class="fa-regular fa-clock"></i> 30 dakika önce</span>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="news-list-item" id="spor2">
+                            <a href="#">
+                                <img src="images/news1.png" alt="Spor haberi 2" width="130" height="90" loading="lazy" />
+                                <div class="news-list-text">
+                                    <span class="list-cat spor-cat">Spor</span>
+                                    <h3>Yüzme Şampiyonası Mersin'de Yapılacak: 500 Sporcu Katılıyor</h3>
+                                    <span class="list-time"><i class="fa-regular fa-clock"></i> 2 saat önce</span>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="news-list-item" id="spor3">
+                            <a href="#">
+                                <img src="images/news4.png" alt="Spor haberi 3" width="130" height="90" loading="lazy" />
+                                <div class="news-list-text">
+                                    <span class="list-cat spor-cat">Spor</span>
+                                    <h3>Mersinli Atlet Türkiye Rekorunu Kırdı: Gurur Kaynağı Oldu</h3>
+                                    <span class="list-time"><i class="fa-regular fa-clock"></i> 4 saat önce</span>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="news-list-item" id="spor4">
+                            <a href="#">
+                                <img src="images/news6.png" alt="Spor haberi 4" width="130" height="90" loading="lazy" />
+                                <div class="news-list-text">
+                                    <span class="list-cat spor-cat">Spor</span>
+                                    <h3>Basketbol Takımı Play-off'a Kaldı: Tarihi Başarı</h3>
+                                    <span class="list-time"><i class="fa-regular fa-clock"></i> 6 saat önce</span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- EKONOMİ BÖLÜMÜ -->
+                <section class="news-section" id="section-ekonomi">
+                    <div class="section-header">
+                        <h2 class="section-title ekonomi"><span>Ekonomi</span></h2>
+                        <a href="#" class="see-all" id="ekonomi-all">Tümünü Gör <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="news-grid news-grid-3">
+                        <article class="news-card" id="ekon1">
+                            <a href="#">
+                                <div class="news-card-img-wrap">
+                                    <img src="images/news4.png" alt="Ekonomi haberi 1" class="news-card-img" width="400" height="270" loading="lazy" />
+                                    <span class="news-card-cat ekon-cat">Ekonomi</span>
+                                </div>
+                                <div class="news-card-body">
+                                    <h3>Dolar Kuru Güne Nasıl Başladı? İşte Anlık Rakamlar</h3>
+                                    <div class="news-card-meta">
+                                        <span><i class="fa-regular fa-clock"></i> 1 saat önce</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="news-card" id="ekon2">
+                            <a href="#">
+                                <div class="news-card-img-wrap">
+                                    <img src="images/news1.png" alt="Ekonomi haberi 2" class="news-card-img" width="400" height="270" loading="lazy" />
+                                    <span class="news-card-cat ekon-cat">Ekonomi</span>
+                                </div>
+                                <div class="news-card-body">
+                                    <h3>Mersin Ticaret Odası Mayıs Ayı Verilerini Açıkladı</h3>
+                                    <div class="news-card-meta">
+                                        <span><i class="fa-regular fa-clock"></i> 3 saat önce</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="news-card" id="ekon3">
+                            <a href="#">
+                                <div class="news-card-img-wrap">
+                                    <img src="images/news5.png" alt="Ekonomi haberi 3" class="news-card-img" width="400" height="270" loading="lazy" />
+                                    <span class="news-card-cat ekon-cat">Ekonomi</span>
+                                </div>
+                                <div class="news-card-body">
+                                    <h3>Turizm Gelirleri Geçen Yıla Kıyasla Yüzde 18 Arttı</h3>
+                                    <div class="news-card-meta">
+                                        <span><i class="fa-regular fa-clock"></i> 5 saat önce</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- EĞİTİM & SAĞLIK -->
+                <section class="news-section two-col-section" id="section-egitim-saglik">
+                    <div class="two-col">
+                        <!-- Eğitim -->
+                        <div class="two-col-block" id="egitim-block">
+                            <div class="section-header">
+                                <h2 class="section-title egitim"><span>Eğitim</span></h2>
+                                <a href="#" class="see-all" id="egitim-all">Tümü <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <div class="news-list compact">
+                                <article class="news-list-item compact" id="eg1">
+                                    <a href="#">
+                                        <img src="images/news6.png" alt="Eğitim haberi 1" width="100" height="70" loading="lazy" />
+                                        <div class="news-list-text">
+                                            <h3>LGS Sınav Sonuçları Açıklandı: Mersinli Öğrencilerden Büyük Başarı</h3>
+                                            <span class="list-time"><i class="fa-regular fa-clock"></i> 1s önce</span>
+                                        </div>
+                                    </a>
+                                </article>
+                                <article class="news-list-item compact" id="eg2">
+                                    <a href="#">
+                                        <img src="images/news1.png" alt="Eğitim haberi 2" width="100" height="70" loading="lazy" />
+                                        <div class="news-list-text">
+                                            <h3>Mersin Üniversitesi Yeni Bölümler Açıyor: Kayıtlar Başladı</h3>
+                                            <span class="list-time"><i class="fa-regular fa-clock"></i> 3s önce</span>
+                                        </div>
+                                    </a>
+                                </article>
+                                <article class="news-list-item compact" id="eg3">
+                                    <a href="#">
+                                        <img src="images/news2.png" alt="Eğitim haberi 3" width="100" height="70" loading="lazy" />
+                                        <div class="news-list-text">
+                                            <h3>Özel Okul Ücretlerine Tavan Belirlendi</h3>
+                                            <span class="list-time"><i class="fa-regular fa-clock"></i> 5s önce</span>
+                                        </div>
+                                    </a>
+                                </article>
+                            </div>
+                        </div>
+
+                        <!-- Sağlık -->
+                        <div class="two-col-block" id="saglik-block">
+                            <div class="section-header">
+                                <h2 class="section-title saglik"><span>Sağlık</span></h2>
+                                <a href="#" class="see-all" id="saglik-all">Tümü <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <div class="news-list compact">
+                                <article class="news-list-item compact" id="sg1">
+                                    <a href="#">
+                                        <img src="images/news5.png" alt="Sağlık haberi 1" width="100" height="70" loading="lazy" />
+                                        <div class="news-list-text">
+                                            <h3>Mersin Şehir Hastanesi Yeni Yoğun Bakım Ünitesi Açıldı</h3>
+                                            <span class="list-time"><i class="fa-regular fa-clock"></i> 2s önce</span>
+                                        </div>
+                                    </a>
+                                </article>
+                                <article class="news-list-item compact" id="sg2">
+                                    <a href="#">
+                                        <img src="images/news3.png" alt="Sağlık haberi 2" width="100" height="70" loading="lazy" />
+                                        <div class="news-list-text">
+                                            <h3>Sıcak Havada Sağlıklı Kalmanın 8 Altın Kuralı</h3>
+                                            <span class="list-time"><i class="fa-regular fa-clock"></i> 4s önce</span>
+                                        </div>
+                                    </a>
+                                </article>
+                                <article class="news-list-item compact" id="sg3">
+                                    <a href="#">
+                                        <img src="images/news6.png" alt="Sağlık haberi 3" width="100" height="70" loading="lazy" />
+                                        <div class="news-list-text">
+                                            <h3>Grip Salgını Uyarısı: Aşı Olmayı Unutmayın</h3>
+                                            <span class="list-time"><i class="fa-regular fa-clock"></i> 6s önce</span>
+                                        </div>
+                                    </a>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- DÜNYA HABERLERİ -->
+                <section class="news-section" id="section-dunya">
+                    <div class="section-header">
+                        <h2 class="section-title dunya"><span>Dünya</span></h2>
+                        <a href="#" class="see-all" id="dunya-all">Tümünü Gör <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="news-list">
+                        <article class="news-list-item" id="dunya1">
+                            <a href="#">
+                                <img src="images/news2.png" alt="Dünya haberi 1" width="130" height="90" loading="lazy" />
+                                <div class="news-list-text">
+                                    <span class="list-cat dunya-cat">Dünya</span>
+                                    <h3>BM Acil Toplantısı Toplanıyor: Orta Doğu'da Ateşkes Müzakeresi</h3>
+                                    <span class="list-time"><i class="fa-regular fa-clock"></i> 20 dakika önce</span>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="news-list-item" id="dunya2">
+                            <a href="#">
+                                <img src="images/news4.png" alt="Dünya haberi 2" width="130" height="90" loading="lazy" />
+                                <div class="news-list-text">
+                                    <span class="list-cat dunya-cat">Dünya</span>
+                                    <h3>Avrupa'da Enflasyon Rekor Düşük Seviyeye Geriledi</h3>
+                                    <span class="list-time"><i class="fa-regular fa-clock"></i> 1 saat önce</span>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="news-list-item" id="dunya3">
+                            <a href="#">
+                                <img src="images/news1.png" alt="Dünya haberi 3" width="130" height="90" loading="lazy" />
+                                <div class="news-list-text">
+                                    <span class="list-cat dunya-cat">Dünya</span>
+                                    <h3>G7 Zirvesi: Yapay Zeka ve Küresel Güvenlik Gündemde</h3>
+                                    <span class="list-time"><i class="fa-regular fa-clock"></i> 3 saat önce</span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- SAĞ SIDEBAR -->
+            <aside class="sidebar-col">
+
+                <!-- EN ÇOK OKUNANLAR -->
+                <div class="sidebar-widget" id="widget-popular">
+                    <div class="widget-header">
+                        <h3><i class="fa-solid fa-fire"></i> En Çok Okunanlar</h3>
+                    </div>
+                    <ol class="popular-list">
+                        <li class="popular-item" id="pop1">
+                            <a href="#">
+                                <span class="pop-num">1</span>
+                                <div class="pop-content">
+                                    <p>Mersin'de Gece Yarısı Deprem: AFAD İlk Açıklamayı Yaptı</p>
+                                    <span><i class="fa-regular fa-clock"></i> 14dk önce</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="popular-item" id="pop2">
+                            <a href="#">
+                                <span class="pop-num">2</span>
+                                <div class="pop-content">
+                                    <p>Tarsus'taki Büyük Yangında 3 Kişi Yaralandı</p>
+                                    <span><i class="fa-regular fa-clock"></i> 45dk önce</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="popular-item" id="pop3">
+                            <a href="#">
+                                <span class="pop-num">3</span>
+                                <div class="pop-content">
+                                    <p>LGS Sonuçları Açıklandı: Mersin'den Binlerce Öğrenci İstediği Okula</p>
+                                    <span><i class="fa-regular fa-clock"></i> 1s önce</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="popular-item" id="pop4">
+                            <a href="#">
+                                <span class="pop-num">4</span>
+                                <div class="pop-content">
+                                    <p>Mersin İdman Yurdu Galibiyet Serisini Sürdürdü</p>
+                                    <span><i class="fa-regular fa-clock"></i> 2s önce</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="popular-item" id="pop5">
+                            <a href="#">
+                                <span class="pop-num">5</span>
+                                <div class="pop-content">
+                                    <p>Sıcak Hava Uyarısı: Meteoroloji Bugün İçin Sarı Alarm Verdi</p>
+                                    <span><i class="fa-regular fa-clock"></i> 3s önce</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- HAVA DURUMU -->
+                <div class="sidebar-widget weather-widget" id="widget-weather">
+                    <div class="widget-header">
+                        <h3><i class="fa-solid fa-cloud-sun"></i> Hava Durumu</h3>
+                    </div>
+                    <div class="weather-content">
+                        <div class="weather-main">
+                            <div class="weather-icon-big"><i class="fa-solid fa-sun"></i></div>
+                            <div class="weather-info">
+                                <div class="weather-temp">28°C</div>
+                                <div class="weather-city">Mersin</div>
+                                <div class="weather-desc">Güneşli ve Açık</div>
+                            </div>
+                        </div>
+                        <div class="weather-days">
+                            <div class="weather-day">
+                                <span>Salı</span>
+                                <i class="fa-solid fa-sun"></i>
+                                <span>30°</span>
+                            </div>
+                            <div class="weather-day">
+                                <span>Çarş</span>
+                                <i class="fa-solid fa-cloud-sun"></i>
+                                <span>27°</span>
+                            </div>
+                            <div class="weather-day">
+                                <span>Perş</span>
+                                <i class="fa-solid fa-cloud"></i>
+                                <span>24°</span>
+                            </div>
+                            <div class="weather-day">
+                                <span>Cuma</span>
+                                <i class="fa-solid fa-sun"></i>
+                                <span>31°</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CANLI KAMERA -->
+                <div class="sidebar-widget" id="widget-duyuru">
+                    <div class="widget-header">
+                        <h3><i class="fa-solid fa-bullhorn"></i> Duyuru & Bilgilendirme</h3>
+                    </div>
+                    <ul class="duyuru-list">
+                        <li id="duyuru1"><a href="#"><i class="fa-solid fa-circle-info"></i> Mersin Su İdaresi Bakım Duyurusu</a></li>
+                        <li id="duyuru2"><a href="#"><i class="fa-solid fa-circle-info"></i> Büyükşehir Ücretsiz Ulaşım Saatleri Güncellendi</a></li>
+                        <li id="duyuru3"><a href="#"><i class="fa-solid fa-circle-info"></i> Tarsus İlçe Belediyesi İhale İlanı</a></li>
+                        <li id="duyuru4"><a href="#"><i class="fa-solid fa-circle-info"></i> Mezitli'de Su Kesintisi: Saatler ve Mahalleler</a></li>
+                        <li id="duyuru5"><a href="#"><i class="fa-solid fa-circle-info"></i> Silifke'de Elektrik Kesintisi Uyarısı</a></li>
+                    </ul>
+                </div>
+
+                <!-- KURLAR -->
+                <div class="sidebar-widget kur-widget" id="widget-kur">
+                    <div class="widget-header">
+                        <h3><i class="fa-solid fa-chart-line"></i> Döviz Kurları</h3>
+                    </div>
+                    <div class="kur-list">
+                        <div class="kur-item" id="kur-dolar">
+                            <span class="kur-name"><i class="fa-solid fa-dollar-sign"></i> Dolar</span>
+                            <span class="kur-val">38.42</span>
+                            <span class="kur-change up"><i class="fa-solid fa-caret-up"></i> +0.12%</span>
+                        </div>
+                        <div class="kur-item" id="kur-euro">
+                            <span class="kur-name"><i class="fa-solid fa-euro-sign"></i> Euro</span>
+                            <span class="kur-val">41.87</span>
+                            <span class="kur-change down"><i class="fa-solid fa-caret-down"></i> -0.08%</span>
+                        </div>
+                        <div class="kur-item" id="kur-gbp">
+                            <span class="kur-name"><i class="fa-solid fa-sterling-sign"></i> Sterlin</span>
+                            <span class="kur-val">48.65</span>
+                            <span class="kur-change up"><i class="fa-solid fa-caret-up"></i> +0.22%</span>
+                        </div>
+                        <div class="kur-item" id="kur-altin">
+                            <span class="kur-name"><i class="fa-solid fa-coins"></i> Altın (g)</span>
+                            <span class="kur-val">3.842</span>
+                            <span class="kur-change up"><i class="fa-solid fa-caret-up"></i> +1.4%</span>
+                        </div>
+                    </div>
+                    <div class="kur-update"><i class="fa-regular fa-clock"></i> Son güncelleme: <span id="kurTime"></span></div>
+                </div>
+
+                <!-- SOSYAL MEDYA TAKİP -->
+                <div class="sidebar-widget social-widget" id="widget-social">
+                    <div class="widget-header">
+                        <h3><i class="fa-solid fa-share-nodes"></i> Bizi Takip Edin</h3>
+                    </div>
+                    <div class="social-follow-grid">
+                        <a href="#" class="follow-btn fb" id="follow-fb"><i class="fa-brands fa-facebook-f"></i><span>Facebook</span><em>Takip Et</em></a>
+                        <a href="#" class="follow-btn tw" id="follow-tw"><i class="fa-brands fa-x-twitter"></i><span>Twitter</span><em>Takip Et</em></a>
+                        <a href="#" class="follow-btn ig" id="follow-ig"><i class="fa-brands fa-instagram"></i><span>Instagram</span><em>Takip Et</em></a>
+                        <a href="#" class="follow-btn yt" id="follow-yt"><i class="fa-brands fa-youtube"></i><span>YouTube</span><em>Abone Ol</em></a>
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about" id="footer-about">
+                    <div class="footer-logo">
+                        <span class="logo-icon"><i class="fa-solid fa-newspaper"></i></span>
+                        <div class="logo-text">
+                            <span class="logo-main">MERSİN</span>
+                            <span class="logo-sub">SON DAKİKA</span>
+                        </div>
+                    </div>
+                    <p>Mersin Son Dakika ile gelişmeleri anında öğrenin! Mersin ve ilçelerinden son dakika haberler.</p>
+                    <div class="footer-social">
+                        <a href="#" id="footer-fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" id="footer-tw" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" id="footer-yt" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" id="footer-ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col" id="footer-cats">
+                    <h4>Kategoriler</h4>
+                    <ul>
+                        <li><a href="#" id="fcat-guncel">Güncel</a></li>
+                        <li><a href="#" id="fcat-yerel">Yerel</a></li>
+                        <li><a href="#" id="fcat-siyaset">Siyaset</a></li>
+                        <li><a href="#" id="fcat-ekonomi">Ekonomi</a></li>
+                        <li><a href="#" id="fcat-spor">Spor</a></li>
+                        <li><a href="#" id="fcat-saglik">Sağlık</a></li>
+                        <li><a href="#" id="fcat-egitim">Eğitim</a></li>
+                        <li><a href="#" id="fcat-teknoloji">Teknoloji</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col" id="footer-ilceler">
+                    <h4>İlçeler</h4>
+                    <ul>
+                        <li><a href="#" id="filce-akdeniz">Akdeniz</a></li>
+                        <li><a href="#" id="filce-mezitli">Mezitli</a></li>
+                        <li><a href="#" id="filce-toroslar">Toroslar</a></li>
+                        <li><a href="#" id="filce-tarsus">Tarsus</a></li>
+                        <li><a href="#" id="filce-silifke">Silifke</a></li>
+                        <li><a href="#" id="filce-erdemli">Erdemli</a></li>
+                        <li><a href="#" id="filce-anamur">Anamur</a></li>
+                        <li><a href="#" id="filce-mut">Mut</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col" id="footer-kurumsal">
+                    <h4>Kurumsal</h4>
+                    <ul>
+                        <li><a href="#" id="fkur-hakkimizda">Hakkımızda</a></li>
+                        <li><a href="#" id="fkur-iletisim">İletişim</a></li>
+                        <li><a href="#" id="fkur-gizlilik">Gizlilik Politikası</a></li>
+                        <li><a href="#" id="fkur-kullanim">Kullanım Koşulları</a></li>
+                        <li><a href="#" id="fkur-reklam">Reklam</a></li>
+                        <li><a href="#" id="fkur-rss">RSS Akışı</a></li>
+                        <li><a href="#" id="fkur-sitemap">Site Haritası</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-inner">
+                <p>&copy; <span id="footerYear"></span> Mersin Son Dakika. Tüm hakları saklıdır.</p>
+                <p>Mersin Son Dakika ® | <a href="#" id="footer-iletisim">İletişim</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Yukarı çık">
+    <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>

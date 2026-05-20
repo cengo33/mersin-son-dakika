@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+
+<head>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width, initial-scale=1' name='viewport'/>
+  <b:include data='blog' name='all-head-content'/>
+
+  <title><data:blog.pageTitle/></title>
+  <meta expr:content='data:blog.metaDescription' name='description'/>
+
+  <!-- Open Graph -->
+  <meta content='website' property='og:type'/>
+  <meta expr:content='data:blog.pageTitle' property='og:title'/>
+  <meta content='Mersin Son Dakika' property='og:site_name'/>
+
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Merriweather:wght@400;700;900&amp;display=swap' rel='stylesheet'/>
+  <!-- Font Awesome -->
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css' rel='stylesheet'/>
+
+  <b:skin><![CDATA[
+/* ========================================
+   MERSİN SON DAKİKA - Premium News CSS
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red: #d60101; --red-dark: #a80000;
+  --blue: #1565c0; --green: #2e7d32;
+  --orange: #e65100; --purple: #6a1b9a; --teal: #00695c;
+  --bg: #f4f5f7; --white: #ffffff;
+  --gray-50: #fafafa; --gray-100: #f0f0f0; --gray-200: #e0e0e0;
+  --gray-400: #9e9e9e; --gray-600: #616161; --gray-800: #212121;
+  --text: #1a1a2e; --text-light: #555570; --border: #e2e4e9;
+  --nav-bg: #d60101; --footer-bg: #0d0d1a;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.08);
+  --shadow: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-md: 0 8px 32px rgba(0,0,0,0.14);
+  --radius: 8px; --radius-lg: 14px;
+  --font-body: 'Inter', sans-serif; --font-head: 'Merriweather', serif;
+  --transition: 0.22s ease;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); font-size: 15px; color: var(--text); background: var(--bg); line-height: 1.6; }
+a { color: inherit; text-decoration: none; transition: color var(--transition); }
+img { max-width: 100%; display: block; }
+ul, ol { list-style: none; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+
+/* SON DAKİKA */
+.son-dakika { background: linear-gradient(90deg,#d60101,#a80000); color:#fff; overflow:hidden; height:36px; position:sticky; top:0; z-index:1000; box-shadow:0 2px 8px rgba(214,1,1,0.35); }
+.son-dakika-inner { display:flex; align-items:center; height:100%; max-width:1280px; margin:0 auto; padding:0 16px; overflow:hidden; }
+.sd-badge { background:rgba(0,0,0,0.25); color:#fff; font-weight:800; font-size:11px; letter-spacing:1.2px; padding:4px 14px; border-radius:3px; white-space:nowrap; flex-shrink:0; margin-right:18px; display:flex; align-items:center; gap:6px; }
+.sd-ticker-wrap { flex:1; overflow:hidden; }
+.sd-ticker { display:flex; white-space:nowrap; animation:tickerScroll 32s linear infinite; font-size:13px; font-weight:500; }
+@keyframes tickerScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* TOP BAR */
+.top-bar { background:var(--gray-50); border-bottom:1px solid var(--border); font-size:12px; color:var(--gray-600); }
+.top-bar-inner { display:flex; justify-content:space-between; align-items:center; height:36px; }
+.top-bar-left { display:flex; align-items:center; gap:18px; }
+.top-bar-right { display:flex; align-items:center; gap:10px; }
+.top-bar-right a { color:var(--gray-600); font-size:14px; transition:color var(--transition); }
+.top-bar-right a:hover { color:var(--red); }
+.rss-btn { background:var(--orange); color:#fff !important; padding:3px 10px; border-radius:3px; font-size:11px; font-weight:700; }
+
+/* LOGO BAR */
+.logo-bar { background:var(--white); border-bottom:2px solid var(--red); padding:12px 0; }
+.logo-bar-inner { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.site-logo { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.logo-icon { width:48px; height:48px; background:var(--red); color:#fff; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow:0 4px 12px rgba(214,1,1,0.3); transition:transform var(--transition); }
+.site-logo:hover .logo-icon { transform:scale(1.08); }
+.logo-text { display:flex; flex-direction:column; line-height:1; }
+.logo-main { font-family:var(--font-head); font-size:22px; font-weight:900; color:var(--red); letter-spacing:2px; }
+.logo-sub { font-family:var(--font-head); font-size:11px; font-weight:400; color:var(--gray-600); letter-spacing:3px; text-transform:uppercase; }
+.search-box { display:flex; align-items:center; background:var(--gray-100); border:1.5px solid var(--border); border-radius:6px; overflow:hidden; transition:border-color var(--transition); }
+.search-box:focus-within { border-color:var(--red); box-shadow:0 0 0 3px rgba(214,1,1,0.10); }
+.search-box input { border:none; background:transparent; padding:9px 14px; font-size:13px; width:200px; outline:none; color:var(--text); font-family:var(--font-body); }
+.search-box button { border:none; background:var(--red); color:#fff; padding:9px 16px; cursor:pointer; font-size:14px; transition:background var(--transition); }
+.search-box button:hover { background:var(--red-dark); }
+
+/* NAV */
+.main-nav { background:var(--nav-bg); box-shadow:0 4px 16px rgba(214,1,1,0.25); }
+.main-nav .container { display:flex; align-items:center; }
+.nav-menu { display:flex; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; gap:0; padding:0; width:100%; }
+.nav-menu::-webkit-scrollbar { display:none; }
+.nav-item { position:relative; flex-shrink:0; }
+.nav-link { display:flex; align-items:center; gap:5px; color:rgba(255,255,255,0.88); font-size:13.5px; font-weight:600; padding:13px 14px; transition:background var(--transition); white-space:nowrap; }
+.nav-link:hover, .nav-item.active .nav-link { color:#fff; background:rgba(0,0,0,0.22); }
+.nav-video .nav-link { color:#ffeb3b; }
+.nav-galeri .nav-link { color:#ff9800; }
+.dropdown-menu { position:absolute; top:100%; left:0; background:#fff; border-radius:0 0 var(--radius) var(--radius); box-shadow:var(--shadow-md); min-width:180px; z-index:500; padding:8px 0; opacity:0; pointer-events:none; transform:translateY(-8px); transition:opacity 0.2s,transform 0.2s; }
+.dropdown:hover .dropdown-menu { opacity:1; pointer-events:all; transform:translateY(0); }
+.dropdown-menu li a { display:block; padding:9px 18px; font-size:13px; font-weight:500; color:var(--text); transition:background var(--transition); }
+.dropdown-menu li a:hover { background:var(--gray-100); color:var(--red); }
+.hamburger { display:none; flex-direction:column; justify-content:center; gap:5px; background:none; border:none; cursor:pointer; padding:12px; margin-left:auto; }
+.hamburger span { display:block; width:24px; height:2px; background:#fff; border-radius:2px; transition:all 0.3s; }
+
+/* LAYOUT */
+#main-content { padding:24px 0 32px; }
+.content-grid { display:grid; grid-template-columns:1fr 320px; gap:24px; align-items:start; }
+
+/* HERO */
+.hero-carousel { display:grid; grid-template-columns:1fr 280px; gap:0; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-md); margin-bottom:28px; background:#000; }
+.carousel-container { position:relative; overflow:hidden; background:#111; }
+.carousel-track { display:flex; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); will-change:transform; }
+.carousel-slide { min-width:100%; position:relative; }
+.carousel-slide a { display:block; position:relative; }
+.slide-img-wrap { position:relative; aspect-ratio:16/9; overflow:hidden; }
+.slide-img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.6s ease; }
+.carousel-slide:hover .slide-img { transform:scale(1.03); }
+.slide-overlay { position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.25) 55%,transparent 100%); }
+.slide-caption { position:absolute; bottom:0; left:0; right:0; padding:18px 20px 20px; color:#fff; }
+.slide-category { display:inline-block; background:var(--red); color:#fff; font-size:10px; font-weight:800; letter-spacing:1.2px; padding:3px 10px; border-radius:3px; margin-bottom:8px; text-transform:uppercase; }
+.slide-caption h2 { font-family:var(--font-head); font-size:16px; font-weight:700; line-height:1.4; margin-bottom:6px; text-shadow:0 2px 8px rgba(0,0,0,0.5); display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.slide-time { font-size:11px; opacity:0.8; display:flex; align-items:center; gap:4px; }
+.carousel-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.55); color:#fff; border:none; width:36px; height:36px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:14px; z-index:10; transition:background var(--transition); backdrop-filter:blur(4px); }
+.carousel-btn:hover { background:var(--red); transform:translateY(-50%) scale(1.08); }
+.carousel-prev { left:10px; }
+.carousel-next { right:10px; }
+.carousel-indicators { position:absolute; bottom:14px; left:50%; transform:translateX(-50%); display:flex; gap:6px; z-index:10; }
+.indicator { width:28px; height:3px; background:rgba(255,255,255,0.4); border:none; border-radius:2px; cursor:pointer; transition:background var(--transition),width var(--transition); padding:0; }
+.indicator.active { background:#fff; width:42px; }
+
+/* SIDE NEWS */
+.hero-side-news { background:#fff; border-left:1px solid var(--border); display:flex; flex-direction:column; overflow:hidden; }
+.side-news-item { display:flex; gap:10px; padding:12px 14px; border-bottom:1px solid var(--gray-100); transition:background var(--transition); align-items:flex-start; }
+.side-news-item:last-child { border-bottom:none; }
+.side-news-item:hover { background:var(--gray-50); }
+.side-news-item img { width:90px; height:60px; object-fit:cover; border-radius:5px; flex-shrink:0; }
+.side-news-text { flex:1; min-width:0; }
+.side-cat { display:inline-block; background:var(--red); color:#fff; font-size:9px; font-weight:800; padding:2px 7px; border-radius:2px; margin-bottom:4px; text-transform:uppercase; }
+.side-news-text p { font-size:12px; font-weight:600; line-height:1.4; color:var(--text); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:4px; }
+.side-news-item:hover .side-news-text p { color:var(--red); }
+.side-time { font-size:10px; color:var(--gray-400); display:flex; align-items:center; gap:3px; }
+
+/* SECTIONS */
+.news-section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; border-bottom:3px solid var(--red); padding-bottom:10px; }
+.section-title span { background:var(--red); color:#fff; padding:4px 16px; border-radius:4px; display:inline-block; font-size:13px; font-weight:800; letter-spacing:0.5px; text-transform:uppercase; }
+.section-title.spor span { background:var(--green); }
+.section-title.ekonomi span { background:var(--blue); }
+.section-title.egitim span { background:var(--purple); }
+.section-title.saglik span { background:var(--teal); }
+.section-title.dunya span { background:var(--orange); }
+.see-all { font-size:12px; font-weight:700; color:var(--red); display:flex; align-items:center; gap:5px; transition:gap var(--transition); text-transform:uppercase; }
+.see-all:hover { gap:9px; }
+
+/* CARDS */
+.news-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.news-grid-3 { grid-template-columns:repeat(3,1fr); }
+.news-card-large { grid-column:1/-1; display:grid; grid-template-columns:1.8fr 1fr; }
+.news-card-large .news-card-img-wrap { border-radius:var(--radius) 0 0 var(--radius); overflow:hidden; }
+.news-card-large .news-card-img { height:100%; }
+.news-card-large .news-card-body { padding:24px; display:flex; flex-direction:column; justify-content:center; border-radius:0 var(--radius) var(--radius) 0; }
+.news-card-large .news-card-body h3 { font-family:var(--font-head); font-size:18px; font-weight:700; line-height:1.4; margin-bottom:10px; }
+.news-card-excerpt { font-size:13px; color:var(--text-light); line-height:1.6; margin-bottom:14px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.news-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); transition:transform var(--transition),box-shadow var(--transition); }
+.news-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); }
+.news-card a { display:block; height:100%; }
+.news-card-img-wrap { position:relative; overflow:hidden; aspect-ratio:16/9; }
+.news-card-img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease; }
+.news-card:hover .news-card-img { transform:scale(1.06); }
+.news-card-cat { position:absolute; top:10px; left:10px; background:var(--red); color:#fff; font-size:9px; font-weight:800; padding:3px 9px; border-radius:3px; text-transform:uppercase; z-index:1; }
+.ekon-cat { background:var(--blue) !important; }
+.news-card-body { padding:14px 16px 16px; background:var(--white); }
+.news-card-body h3 { font-size:14px; font-weight:700; line-height:1.45; color:var(--text); margin-bottom:10px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; transition:color var(--transition); }
+.news-card:hover .news-card-body h3 { color:var(--red); }
+.news-card-meta { display:flex; align-items:center; gap:14px; font-size:11px; color:var(--gray-400); }
+
+/* LIST */
+.news-list { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); }
+.news-list-item { border-bottom:1px solid var(--gray-100); transition:background var(--transition); }
+.news-list-item:last-child { border-bottom:none; }
+.news-list-item:hover { background:var(--gray-50); }
+.news-list-item a { display:flex; gap:14px; padding:14px 16px; align-items:center; }
+.news-list-item img { width:110px; height:74px; object-fit:cover; border-radius:6px; flex-shrink:0; transition:transform 0.3s; }
+.news-list-item:hover img { transform:scale(1.04); }
+.news-list-text { flex:1; min-width:0; }
+.list-cat { display:inline-block; font-size:9px; font-weight:800; padding:2px 8px; border-radius:2px; text-transform:uppercase; margin-bottom:5px; background:var(--red); color:#fff; }
+.spor-cat { background:var(--green) !important; }
+.dunya-cat { background:var(--orange) !important; }
+.news-list-text h3 { font-size:13.5px; font-weight:600; line-height:1.45; color:var(--text); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:5px; transition:color var(--transition); }
+.news-list-item:hover .news-list-text h3 { color:var(--red); }
+.list-time { font-size:11px; color:var(--gray-400); display:flex; align-items:center; gap:4px; }
+.news-list.compact .news-list-item a { padding:10px 14px; }
+.news-list.compact .news-list-item img { width:80px; height:54px; border-radius:4px; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+/* AD */
+.ad-banner { height:90px; background:repeating-linear-gradient(45deg,var(--gray-100),var(--gray-100) 10px,var(--gray-200) 10px,var(--gray-200) 20px); display:flex; align-items:center; justify-content:center; color:var(--gray-400); font-size:12px; letter-spacing:2px; text-transform:uppercase; border-radius:var(--radius); margin-bottom:28px; }
+
+/* SIDEBAR */
+.sidebar-col { position:sticky; top:60px; display:flex; flex-direction:column; gap:20px; }
+.sidebar-widget { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); }
+.widget-header { background:linear-gradient(135deg,var(--gray-800),#2d2d4e); color:#fff; padding:12px 16px; }
+.widget-header h3 { font-size:13px; font-weight:700; display:flex; align-items:center; gap:8px; }
+.popular-list { padding:6px 0; }
+.popular-item { border-bottom:1px solid var(--gray-100); transition:background var(--transition); }
+.popular-item:last-child { border-bottom:none; }
+.popular-item:hover { background:var(--gray-50); }
+.popular-item a { display:flex; align-items:flex-start; gap:12px; padding:10px 14px; }
+.pop-num { width:24px; height:24px; background:var(--red); color:#fff; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0; margin-top:1px; }
+.popular-item:nth-child(4) .pop-num { background:var(--blue); }
+.popular-item:nth-child(5) .pop-num { background:var(--gray-600); }
+.pop-content p { font-size:12.5px; font-weight:600; line-height:1.4; color:var(--text); margin-bottom:4px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; transition:color var(--transition); }
+.popular-item:hover .pop-content p { color:var(--red); }
+.pop-content span { font-size:10px; color:var(--gray-400); display:flex; align-items:center; gap:3px; }
+.weather-widget .widget-header { background:linear-gradient(135deg,#1565c0,#0d47a1); }
+.weather-content { padding:16px; }
+.weather-main { display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+.weather-icon-big { font-size:42px; color:#ffc107; }
+.weather-temp { font-size:36px; font-weight:800; line-height:1; }
+.weather-city { font-size:13px; font-weight:700; }
+.weather-desc { font-size:12px; color:var(--gray-600); }
+.weather-days { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; border-top:1px solid var(--border); padding-top:12px; }
+.weather-day { display:flex; flex-direction:column; align-items:center; gap:4px; font-size:11px; color:var(--gray-600); }
+.weather-day i { font-size:18px; color:#ffc107; }
+.weather-day span:last-child { font-weight:700; color:var(--text); }
+.duyuru-list { padding:6px 0; }
+.duyuru-list li { border-bottom:1px solid var(--gray-100); transition:background var(--transition); }
+.duyuru-list li:last-child { border-bottom:none; }
+.duyuru-list li:hover { background:var(--gray-50); }
+.duyuru-list li a { display:flex; align-items:center; gap:8px; padding:10px 14px; font-size:12.5px; font-weight:500; color:var(--text); }
+.duyuru-list li a i { color:var(--blue); font-size:13px; }
+.duyuru-list li:hover a { color:var(--red); }
+.kur-widget .widget-header { background:linear-gradient(135deg,#2e7d32,#1b5e20); }
+.kur-list { padding:6px 0; }
+.kur-item { display:flex; align-items:center; justify-content:space-between; padding:10px 16px; border-bottom:1px solid var(--gray-100); font-size:13px; }
+.kur-item:last-child { border-bottom:none; }
+.kur-name { display:flex; align-items:center; gap:6px; color:var(--text); font-weight:600; }
+.kur-val { font-weight:800; font-size:14px; }
+.kur-change { font-size:11px; font-weight:700; display:flex; align-items:center; gap:2px; min-width:56px; justify-content:flex-end; }
+.kur-change.up { color:#2e7d32; }
+.kur-change.down { color:#c62828; }
+.kur-update { font-size:10px; color:var(--gray-400); padding:8px 16px; border-top:1px solid var(--gray-100); }
+.social-follow-grid { display:grid; grid-template-columns:1fr 1fr; }
+.follow-btn { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px 10px; gap:4px; transition:opacity var(--transition); border:1px solid rgba(255,255,255,0.1); color:#fff; }
+.follow-btn:hover { opacity:0.85; }
+.follow-btn.fb { background:#1877f2; }
+.follow-btn.tw { background:#000000; }
+.follow-btn.ig { background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.follow-btn.yt { background:#ff0000; }
+.follow-btn i { font-size:22px; }
+.follow-btn span { font-size:11px; font-weight:700; }
+.follow-btn em { font-size:10px; font-style:normal; opacity:0.8; }
+
+/* FOOTER */
+.site-footer { background:var(--footer-bg); margin-top:40px; }
+.footer-top { padding:48px 0 40px; border-bottom:1px solid rgba(255,255,255,0.06); }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; }
+.footer-col h4 { color:#fff; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:18px; padding-bottom:10px; border-bottom:2px solid var(--red); display:inline-block; }
+.footer-about .footer-logo { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+.footer-about p { color:rgba(255,255,255,0.55); font-size:13px; line-height:1.7; margin-bottom:20px; }
+.footer-social { display:flex; gap:10px; }
+.footer-social a { width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.7); font-size:15px; transition:background var(--transition),transform var(--transition); }
+.footer-social a:hover { background:var(--red); color:#fff; transform:translateY(-2px); }
+.footer-col ul li { margin-bottom:10px; }
+.footer-col ul li a { color:rgba(255,255,255,0.55); font-size:13px; transition:color var(--transition); }
+.footer-col ul li a:hover { color:#fff; }
+.footer-bottom { background:#141428; padding:16px 0; }
+.footer-bottom-inner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+.footer-bottom p { font-size:12px; color:rgba(255,255,255,0.4); }
+.footer-bottom a { color:var(--red); font-weight:600; }
+.back-to-top { position:fixed; bottom:24px; right:24px; width:44px; height:44px; border-radius:50%; background:var(--red); color:#fff; border:none; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(214,1,1,0.5); transition:transform var(--transition),opacity var(--transition); opacity:0; pointer-events:none; z-index:900; }
+.back-to-top.visible { opacity:1; pointer-events:all; }
+.back-to-top:hover { background:var(--red-dark); transform:translateY(-3px) scale(1.08); }
+
+/* BLOGGER POST LIST */
+.blog-posts-section { margin-bottom:28px; }
+.blog-post-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); margin-bottom:16px; transition:transform var(--transition),box-shadow var(--transition); }
+.blog-post-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); }
+.blog-post-card .post-header { display:grid; grid-template-columns:280px 1fr; }
+.blog-post-card .post-img-wrap { overflow:hidden; aspect-ratio:16/9; }
+.blog-post-card .post-img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
+.blog-post-card:hover .post-img { transform:scale(1.05); }
+.blog-post-card .post-body { padding:20px 24px; display:flex; flex-direction:column; justify-content:center; }
+.blog-post-card .post-meta { display:flex; align-items:center; gap:12px; font-size:11px; color:var(--gray-400); margin-bottom:8px; }
+.blog-post-card .post-cat { background:var(--red); color:#fff; font-size:9px; font-weight:800; padding:2px 8px; border-radius:2px; text-transform:uppercase; }
+.blog-post-card h2.post-title { font-family:var(--font-head); font-size:17px; font-weight:700; line-height:1.4; color:var(--text); margin-bottom:8px; transition:color var(--transition); }
+.blog-post-card:hover h2.post-title { color:var(--red); }
+.blog-post-card .post-snippet { font-size:13px; color:var(--text-light); line-height:1.6; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.blog-post-card .read-more { display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:12px; font-weight:700; color:var(--red); transition:gap var(--transition); }
+.blog-post-card:hover .read-more { gap:10px; }
+
+/* RESPONSIVE */
+@media(max-width:1100px) {
+  .hero-carousel { grid-template-columns:1fr; }
+  .hero-side-news { display:grid; grid-template-columns:repeat(3,1fr); border-left:none; border-top:1px solid var(--border); }
+}
+@media(max-width:900px) {
+  .content-grid { grid-template-columns:1fr; }
+  .sidebar-col { position:static; display:grid; grid-template-columns:1fr 1fr; }
+  .news-grid { grid-template-columns:1fr 1fr; }
+  .news-card-large { grid-column:1/-1; grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:720px) {
+  .hamburger { display:flex; }
+  .nav-menu { display:none; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:#b00000; z-index:200; padding:10px 0; }
+  .nav-menu.open { display:flex; }
+  .hero-side-news { grid-template-columns:1fr 1fr; }
+  .two-col { grid-template-columns:1fr; }
+  .sidebar-col { grid-template-columns:1fr; }
+}
+@media(max-width:560px) {
+  .news-grid { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr; }
+  .blog-post-card .post-header { grid-template-columns:1fr; }
+}
+  ]]></b:skin>
+</head>
+
+<body>
+
+<!-- SON DAKİKA -->
+<div class='son-dakika'>
+  <div class='son-dakika-inner'>
+    <span class='sd-badge'><i class='fa-solid fa-bolt'/> SON DAKİKA</span>
+    <div class='sd-ticker-wrap'>
+      <div class='sd-ticker' id='sdTicker'>
+        <span>Mersin'de deniz ulaşımı seferler uzatıldı &nbsp;•&nbsp;</span>
+        <span>Tarsus'ta altyapı çalışmaları tamamlandı &nbsp;•&nbsp;</span>
+        <span>Silifke Göksu'da hasar tespiti başladı &nbsp;•&nbsp;</span>
+        <span>Büyükşehir Belediyesi yeni kreş açılışını duyurdu &nbsp;•&nbsp;</span>
+        <span>Erdemli'de fırtına hayatı olumsuz etkiledi &nbsp;•&nbsp;</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class='site-header'>
+  <div class='top-bar'>
+    <div class='container'>
+      <div class='top-bar-inner'>
+        <div class='top-bar-left'>
+          <span><i class='fa-regular fa-calendar-days'/> <span id='currentDate'/></span>
+          <span><i class='fa-solid fa-temperature-half'/> 28°C Mersin</span>
+          <span><i class='fa-solid fa-sun'/> Açık</span>
+        </div>
+        <div class='top-bar-right'>
+          <a aria-label='Facebook' href='#'><i class='fa-brands fa-facebook-f'/></a>
+          <a aria-label='Twitter' href='#'><i class='fa-brands fa-x-twitter'/></a>
+          <a aria-label='YouTube' href='#'><i class='fa-brands fa-youtube'/></a>
+          <a aria-label='Instagram' href='#'><i class='fa-brands fa-instagram'/></a>
+          <a class='rss-btn' href='/feeds/posts/default' rel='nofollow'><i class='fa-solid fa-rss'/> RSS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='logo-bar'>
+    <div class='container'>
+      <div class='logo-bar-inner'>
+        <a class='site-logo' expr:href='data:blog.homepageUrl'>
+          <span class='logo-icon'><i class='fa-solid fa-newspaper'/></span>
+          <div class='logo-text'>
+            <span class='logo-main'>MERSİN</span>
+            <span class='logo-sub'>SON DAKİKA</span>
+          </div>
+        </a>
+        <div class='search-box'>
+          <input id='search-input' placeholder='Haber ara...' type='text'/>
+          <button id='search-btn'><i class='fa-solid fa-magnifying-glass'/></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav aria-label='Ana Menü' class='main-nav'>
+    <div class='container'>
+      <button aria-expanded='false' aria-label='Menü' class='hamburger' id='hamburger'>
+        <span/><span/><span/>
+      </button>
+      <ul class='nav-menu' id='navMenu'>
+        <li class='nav-item active'><a class='nav-link' expr:href='data:blog.homepageUrl'>Ana Sayfa</a></li>
+        <li class='nav-item'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Güncel&quot;'>Güncel</a></li>
+        <li class='nav-item'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Yerel&quot;'>Yerel</a></li>
+        <li class='nav-item'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Siyaset&quot;'>Siyaset</a></li>
+        <li class='nav-item'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Ekonomi&quot;'>Ekonomi</a></li>
+        <li class='nav-item'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Spor&quot;'>Spor</a></li>
+        <li class='nav-item'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Eğitim&quot;'>Eğitim</a></li>
+        <li class='nav-item'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Sağlık&quot;'>Sağlık</a></li>
+        <li class='nav-item'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Teknoloji&quot;'>Teknoloji</a></li>
+        <li class='nav-item'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Dünya&quot;'>Dünya</a></li>
+        <li class='nav-item nav-video'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Video&quot;'><i class='fa-solid fa-video'/> Video</a></li>
+        <li class='nav-item nav-galeri'><a class='nav-link' expr:href='data:blog.homepageUrl + &quot;search/label/Galeri&quot;'><i class='fa-regular fa-images'/> Galeri</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- MAIN -->
+<main id='main-content'>
+  <div class='container'>
+    <div class='content-grid'>
+
+      <!-- SOL SÜTUN -->
+      <div class='main-col'>
+
+        <!-- BLOGGER POST LİSTESİ -->
+        <section class='blog-posts-section'>
+          <div class='section-header'>
+            <h2 class='section-title'><span>Son Haberler</span></h2>
+          </div>
+          <b:section class='main' id='main' maxwidgets='1' name='Ana İçerik' showaddelement='no'>
+            <b:widget id='Blog1' locked='true' title='Blog Yazıları' type='Blog' version='2'>
+              <b:widget-settings>
+                <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+                <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+                <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+                <b:widget-setting name='showAuthor'>true</b:widget-setting>
+                <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+                <b:widget-setting name='showSnippets'>true</b:widget-setting>
+                <b:widget-setting name='showLabel'>true</b:widget-setting>
+                <b:widget-setting name='showLocation'>false</b:widget-setting>
+                <b:widget-setting name='showInlineAds'>false</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main' var='top'>
+                <b:loop values='data:posts' var='post'>
+                  <article class='blog-post-card'>
+                    <div class='post-header'>
+                      <b:if cond='data:post.featuredImage'>
+                        <div class='post-img-wrap'>
+                          <a expr:href='data:post.url'>
+                            <img class='post-img' expr:alt='data:post.title' expr:src='data:post.featuredImage.isYoutube ? data:post.featuredImage.url : resizeImage(data:post.featuredImage.url, 600, &quot;4:3&quot;)'/>
+                          </a>
+                        </div>
+                      </b:if>
+                      <div class='post-body'>
+                        <div class='post-meta'>
+                          <b:if cond='data:post.labels'>
+                            <b:loop values='data:post.labels' var='label'>
+                              <span class='post-cat'><data:label.name/></span>
+                            </b:loop>
+                          </b:if>
+                          <span><i class='fa-regular fa-clock'/> <data:post.dateHeader/></span>
+                          <span><i class='fa-regular fa-user'/> <data:post.author.name/></span>
+                        </div>
+                        <h2 class='post-title'>
+                          <a expr:href='data:post.url'><data:post.title/></a>
+                        </h2>
+                        <p class='post-snippet'><data:post.snippet/></p>
+                        <a class='read-more' expr:href='data:post.url'>
+                          Devamını Oku <i class='fa-solid fa-arrow-right'/>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </b:loop>
+
+                <!-- SAYFALAMA -->
+                <b:include name='nextprev'/>
+              </b:includable>
+
+              <b:includable id='nextprev'>
+                <div style='display:flex;justify-content:space-between;margin-top:20px;gap:10px;'>
+                  <b:if cond='data:olderPageUrl'>
+                    <a expr:href='data:olderPageUrl' style='display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--red);color:#fff;border-radius:6px;font-weight:700;font-size:13px;'>
+                      <i class='fa-solid fa-chevron-left'/> Önceki Haberler
+                    </a>
+                  </b:if>
+                  <b:if cond='data:newerPageUrl'>
+                    <a expr:href='data:newerPageUrl' style='display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--red);color:#fff;border-radius:6px;font-weight:700;font-size:13px;margin-left:auto;'>
+                      Yeni Haberler <i class='fa-solid fa-chevron-right'/>
+                    </a>
+                  </b:if>
+                </div>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </section>
+
+      </div>
+
+      <!-- SAĞ SIDEBAR -->
+      <aside class='sidebar-col'>
+
+        <!-- ARAMA -->
+        <b:section class='sidebar' id='sidebar-search' name='Arama'>
+          <b:widget id='Search1' title='Haber Ara' type='BlogSearch' version='2'>
+            <b:widget-settings>
+              <b:widget-setting name='display'>FULL</b:widget-setting>
+            </b:widget-settings>
+          </b:widget>
+        </b:section>
+
+        <!-- ETİKETLER / KATEGORİLER -->
+        <div class='sidebar-widget'>
+          <div class='widget-header'><h3><i class='fa-solid fa-tags'/> Kategoriler</h3></div>
+          <b:section class='sidebar' id='sidebar-labels' name='Kategoriler'>
+            <b:widget id='Label1' title='Kategoriler' type='Label' version='2'>
+              <b:widget-settings>
+                <b:widget-setting name='selectedLabelsList'/>
+                <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+                <b:widget-setting name='display'>LIST</b:widget-setting>
+                <b:widget-setting name='showFreqNumbers'>true</b:widget-setting>
+                <b:widget-setting name='type'>LIST</b:widget-setting>
+              </b:widget-settings>
+            </b:widget>
+          </b:section>
+        </div>
+
+        <!-- HAVA DURUMU -->
+        <div class='sidebar-widget weather-widget'>
+          <div class='widget-header'><h3><i class='fa-solid fa-cloud-sun'/> Hava Durumu</h3></div>
+          <div class='weather-content'>
+            <div class='weather-main'>
+              <div class='weather-icon-big'><i class='fa-solid fa-sun'/></div>
+              <div class='weather-info'>
+                <div class='weather-temp'>28°C</div>
+                <div class='weather-city'>Mersin</div>
+                <div class='weather-desc'>Güneşli ve Açık</div>
+              </div>
+            </div>
+            <div class='weather-days'>
+              <div class='weather-day'><span>Sal</span><i class='fa-solid fa-sun'/><span>30°</span></div>
+              <div class='weather-day'><span>Çar</span><i class='fa-solid fa-cloud-sun'/><span>27°</span></div>
+              <div class='weather-day'><span>Per</span><i class='fa-solid fa-cloud'/><span>24°</span></div>
+              <div class='weather-day'><span>Cum</span><i class='fa-solid fa-sun'/><span>31°</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DÖVİZ KURLARI -->
+        <div class='sidebar-widget kur-widget'>
+          <div class='widget-header'><h3><i class='fa-solid fa-chart-line'/> Döviz Kurları</h3></div>
+          <div class='kur-list'>
+            <div class='kur-item' id='kur-dolar'><span class='kur-name'><i class='fa-solid fa-dollar-sign'/> Dolar</span><span class='kur-val'>38.42</span><span class='kur-change up'><i class='fa-solid fa-caret-up'/> +0.12%</span></div>
+            <div class='kur-item' id='kur-euro'><span class='kur-name'><i class='fa-solid fa-euro-sign'/> Euro</span><span class='kur-val'>41.87</span><span class='kur-change down'><i class='fa-solid fa-caret-down'/> -0.08%</span></div>
+            <div class='kur-item' id='kur-gbp'><span class='kur-name'><i class='fa-solid fa-sterling-sign'/> Sterlin</span><span class='kur-val'>48.65</span><span class='kur-change up'><i class='fa-solid fa-caret-up'/> +0.22%</span></div>
+            <div class='kur-item' id='kur-altin'><span class='kur-name'><i class='fa-solid fa-coins'/> Altın (g)</span><span class='kur-val'>3.842</span><span class='kur-change up'><i class='fa-solid fa-caret-up'/> +1.4%</span></div>
+          </div>
+          <div class='kur-update'><i class='fa-regular fa-clock'/> Son güncelleme: <span id='kurTime'/></div>
+        </div>
+
+        <!-- DUYURULAR -->
+        <div class='sidebar-widget'>
+          <div class='widget-header'><h3><i class='fa-solid fa-bullhorn'/> Duyuru &amp; Bilgilendirme</h3></div>
+          <b:section class='sidebar' id='sidebar-pages' name='Duyurular'>
+            <b:widget id='PageList1' title='Sayfalar' type='PageList' version='2'/>
+          </b:section>
+        </div>
+
+        <!-- SOSYAL MEDYA -->
+        <div class='sidebar-widget social-widget'>
+          <div class='widget-header'><h3><i class='fa-solid fa-share-nodes'/> Bizi Takip Edin</h3></div>
+          <div class='social-follow-grid'>
+            <a class='follow-btn fb' href='#'><i class='fa-brands fa-facebook-f'/><span>Facebook</span><em>Takip Et</em></a>
+            <a class='follow-btn tw' href='#'><i class='fa-brands fa-x-twitter'/><span>Twitter</span><em>Takip Et</em></a>
+            <a class='follow-btn ig' href='#'><i class='fa-brands fa-instagram'/><span>Instagram</span><em>Takip Et</em></a>
+            <a class='follow-btn yt' href='#'><i class='fa-brands fa-youtube'/><span>YouTube</span><em>Abone Ol</em></a>
+          </div>
+        </div>
+
+        <!-- ADSENSE ALANI (onay sonrası buraya yapıştır) -->
+        <div class='sidebar-widget'>
+          <div class='ad-banner' style='height:250px;'><span>Reklam Alanı</span></div>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class='site-footer'>
+  <div class='footer-top'>
+    <div class='container'>
+      <div class='footer-grid'>
+        <div class='footer-col footer-about'>
+          <div class='footer-logo'>
+            <span class='logo-icon' style='width:42px;height:42px;font-size:18px;'><i class='fa-solid fa-newspaper'/></span>
+            <div class='logo-text'>
+              <span class='logo-main' style='font-size:18px;'>MERSİN</span>
+              <span class='logo-sub' style='font-size:11px;'>SON DAKİKA</span>
+            </div>
+          </div>
+          <p>Mersin Son Dakika ile gelişmeleri anında öğrenin! Mersin ve ilçelerinden son dakika haberler.</p>
+          <div class='footer-social'>
+            <a aria-label='Facebook' href='#'><i class='fa-brands fa-facebook-f'/></a>
+            <a aria-label='Twitter' href='#'><i class='fa-brands fa-x-twitter'/></a>
+            <a aria-label='YouTube' href='#'><i class='fa-brands fa-youtube'/></a>
+            <a aria-label='Instagram' href='#'><i class='fa-brands fa-instagram'/></a>
+          </div>
+        </div>
+        <div class='footer-col'>
+          <h4>Kategoriler</h4>
+          <ul>
+            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Güncel&quot;'>Güncel</a></li>
+            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Yerel&quot;'>Yerel</a></li>
+            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Siyaset&quot;'>Siyaset</a></li>
+            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Ekonomi&quot;'>Ekonomi</a></li>
+            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Spor&quot;'>Spor</a></li>
+            <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Sağlık&quot;'>Sağlık</a></li>
+          </ul>
+        </div>
+        <div class='footer-col'>
+          <h4>Kurumsal</h4>
+          <ul>
+            <li><a href='/p/hakkimizda.html'>Hakkımızda</a></li>
+            <li><a href='/p/iletisim.html'>İletişim</a></li>
+            <li><a href='/p/gizlilik-politikasi.html'>Gizlilik Politikası</a></li>
+            <li><a href='/p/kullanim-kosullari.html'>Kullanım Koşulları</a></li>
+            <li><a href='/feeds/posts/default' rel='nofollow'>RSS Akışı</a></li>
+          </ul>
+        </div>
+        <div class='footer-col'>
+          <h4>İletişim</h4>
+          <ul>
+            <li><a href='mailto:info@mersinsondakika.com'><i class='fa-solid fa-envelope'/> E-posta</a></li>
+            <li><a href='#'><i class='fa-brands fa-whatsapp'/> WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='footer-bottom'>
+    <div class='container'>
+      <div class='footer-bottom-inner'>
+        <p>&#169; <span id='footerYear'/> Mersin Son Dakika. Tüm hakları saklıdır.</p>
+        <p>Mersin Son Dakika &#174; | <a href='/p/iletisim.html'>İletişim</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button aria-label='Yukarı çık' class='back-to-top' id='backToTop'>
+  <i class='fa-solid fa-chevron-up'/>
+</button>
+
+<b:section class='footer' id='footer-extra' name='Footer Widget'/>
+
+<script>
+//<![CDATA[
+document.addEventListener('DOMContentLoaded', function() {
+  // Tarih
+  var d = new Date();
+  var opts = {weekday:'long',year:'numeric',month:'long',day:'numeric'};
+  var el = document.getElementById('currentDate');
+  if(el) el.textContent = d.toLocaleDateString('tr-TR', opts);
+
+  // Footer yılı
+  var fy = document.getElementById('footerYear');
+  if(fy) fy.textContent = d.getFullYear();
+
+  // Kur saati
+  var kt = document.getElementById('kurTime');
+  if(kt) kt.textContent = d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
+
+  // Ticker duplikasyon
+  var ticker = document.getElementById('sdTicker');
+  if(ticker) ticker.innerHTML += ticker.innerHTML;
+
+  // Hamburger
+  var ham = document.getElementById('hamburger');
+  var nav = document.getElementById('navMenu');
+  if(ham && nav) {
+    ham.addEventListener('click', function() {
+      var open = nav.classList.toggle('open');
+      ham.setAttribute('aria-expanded', open.toString());
+    });
+    document.addEventListener('click', function(e) {
+      if(!ham.contains(e.target) && !nav.contains(e.target)) {
+        nav.classList.remove('open');
+      }
+    });
+  }
+
+  // Back to top
+  var btt = document.getElementById('backToTop');
+  if(btt) {
+    window.addEventListener('scroll', function() {
+      btt.classList.toggle('visible', window.scrollY > 400);
+    }, {passive:true});
+    btt.addEventListener('click', function() {
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  // Arama
+  var sb = document.getElementById('search-btn');
+  var si = document.getElementById('search-input');
+  if(sb && si) {
+    sb.addEventListener('click', function() {
+      var q = si.value.trim();
+      if(q) window.location.href = '/search?q=' + encodeURIComponent(q);
+    });
+    si.addEventListener('keydown', function(e) {
+      if(e.key === 'Enter') sb.click();
+    });
+  }
+
+  // Fade-in
+  if('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if(entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.08});
+    document.querySelectorAll('.blog-post-card,.sidebar-widget').forEach(function(el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(18px)';
+      el.style.transition = 'opacity 0.5s ease,transform 0.5s ease';
+      obs.observe(el);
+    });
+  }
+
+  // Kur simülasyonu
+  function simKur() {
+    [{id:'kur-dolar',base:38.42},{id:'kur-euro',base:41.87},{id:'kur-gbp',base:48.65}].forEach(function(item) {
+      var el = document.getElementById(item.id);
+      if(!el) return;
+      var v = el.querySelector('.kur-val');
+      var c = el.querySelector('.kur-change');
+      if(!v||!c) return;
+      var d = (Math.random()*0.04-0.02);
+      var nv = (item.base+d).toFixed(2);
+      var pct = ((d/item.base)*100).toFixed(2);
+      var up = d>=0;
+      v.textContent = nv;
+      c.innerHTML = '<i class="fa-solid fa-caret-'+(up?'up':'down')+'"></i> '+(up?'+':'')+pct+'%';
+      c.className = 'kur-change '+(up?'up':'down');
+    });
+    var kt2 = document.getElementById('kurTime');
+    if(kt2) kt2.textContent = new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
+  }
+  setInterval(simKur, 8000);
+});
+//]]>
+</script>
+
+</body>
+</html>

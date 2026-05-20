@@ -66,8 +66,9 @@
               <label>Haber Görseli (Sürükle Bırak, Seç veya Yapıştır)</label>
               <div id="dropZone" class="drop-zone">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
-                <p>Görseli buraya sürükleyin, tıklayarak seçin veya yapıştırın (CTRL+V)</p>
-                <span style="font-size: 11px; color: var(--text-muted);">PNG, JPG veya JPEG (Otomatik Yapay Zeka Desteği)</span>
+                <p>Görseli buraya sürükleyin, tıklayarak seçin veya yapıştırın</p>
+                <span style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">PNG, JPG veya JPEG (Otomatik Yapay Zeka Desteği)</span>
+                <input type="text" id="pasteInput" placeholder="Görsel yapıştırmak için buraya tıklayıp CTRL+V yapın" class="form-control" style="font-size: 12px; text-align: center; border: 1.5px dashed var(--border-dash); background: rgba(15, 23, 42, 0.6); color: #fff; max-width: 320px; width: 100%; cursor: pointer;" readonly />
                 <input type="file" id="fileInput" accept="image/*" style="display: none;" />
               </div>
               <div id="previewContainer" class="preview-container" style="display: none;">
@@ -236,8 +237,20 @@
         }
       });
 
-      // Pano yapıştırma (Paste) olayı
-      window.addEventListener('paste', (e) => {
+      const pasteInput = document.getElementById('pasteInput');
+
+      pasteInput.addEventListener('click', (e) => {
+        e.stopPropagation(); // Dosya seçicisinin açılmasını engelle, sadece odağı buraya al
+        pasteInput.focus();
+        pasteInput.placeholder = "Şimdi CTRL+V ile görseli yapıştırın...";
+      });
+
+      pasteInput.addEventListener('blur', () => {
+        pasteInput.placeholder = "Görsel yapıştırmak için buraya tıklayıp CTRL+V yapın";
+      });
+
+      // Pano yapıştırma (Paste) olayı hem input hem de pencere genelinde dinlenir
+      const handlePasteEvent = (e) => {
         const items = e.clipboardData.items;
         for (let i = 0; i < items.length; i++) {
           if (items[i].type.indexOf('image') !== -1) {
@@ -247,7 +260,10 @@
             break;
           }
         }
-      });
+      };
+
+      pasteInput.addEventListener('paste', handlePasteEvent);
+      window.addEventListener('paste', handlePasteEvent);
 
       removeImageBtn.addEventListener('click', () => {
         uploadedImageBase64 = '';

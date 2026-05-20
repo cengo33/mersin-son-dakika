@@ -63,10 +63,10 @@
           <form id="newsForm">
             <!-- Drag and Drop Zone -->
             <div class="form-group">
-              <label>Haber Görseli (Sürükle Bırak veya Seç)</label>
+              <label>Haber Görseli (Sürükle Bırak, Seç veya Yapıştır)</label>
               <div id="dropZone" class="drop-zone">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
-                <p>Görseli buraya sürükleyin veya tıklayarak seçin</p>
+                <p>Görseli buraya sürükleyin, tıklayarak seçin veya yapıştırın (CTRL+V)</p>
                 <span style="font-size: 11px; color: var(--text-muted);">PNG, JPG veya JPEG (Otomatik Yapay Zeka Desteği)</span>
                 <input type="file" id="fileInput" accept="image/*" style="display: none;" />
               </div>
@@ -233,6 +233,19 @@
       fileInput.addEventListener('change', () => {
         if (fileInput.files.length > 0) {
           handleFile(fileInput.files[0]);
+        }
+      });
+
+      // Pano yapıştırma (Paste) olayı
+      window.addEventListener('paste', (e) => {
+        const items = e.clipboardData.items;
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].type.indexOf('image') !== -1) {
+            const file = items[i].getAsFile();
+            handleFile(file);
+            showToast('Görsel panodan başarıyla yapıştırıldı!', true);
+            break;
+          }
         }
       });
 

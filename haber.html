@@ -55,12 +55,12 @@
                     <span class="weather-detail"><i class="fa-solid fa-sun"></i> Açık</span>
                 </div>
                 <div class="top-bar-right">
-                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com/mersinmanset" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://x.com/mersinmanset" target="_blank" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://youtube.com/@mersinmanset" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://instagram.com/mersinmanset" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="dashboard.html" class="writer-panel-btn"><i class="fa-solid fa-user-gear"></i> Yazar Paneli</a>
-                    <a href="#" class="rss-btn"><i class="fa-solid fa-rss"></i> RSS</a>
+                    <a href="sitemap.xml" class="rss-btn"><i class="fa-solid fa-sitemap"></i> Site Haritası</a>
                 </div>
             </div>
         </div>
@@ -99,14 +99,14 @@
             </button>
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Ana Sayfa</a></li>
-                <li class="nav-item"><a href="index.html#section-guncel" class="nav-link">Güncel</a></li>
-                <li class="nav-item"><a href="index.html#section-guncel" class="nav-link">Yerel</a></li>
-                <li class="nav-item"><a href="index.html#section-guncel" class="nav-link">Siyaset</a></li>
-                <li class="nav-item"><a href="index.html#section-ekonomi" class="nav-link">Ekonomi</a></li>
-                <li class="nav-item"><a href="index.html#section-spor" class="nav-link">Spor</a></li>
-                <li class="nav-item"><a href="index.html#section-egitim-saglik" class="nav-link">Eğitim</a></li>
-                <li class="nav-item"><a href="index.html#section-egitim-saglik" class="nav-link">Sağlık</a></li>
-                <li class="nav-item"><a href="index.html#section-dunya" class="nav-link">Dünya</a></li>
+                <li class="nav-item"><a href="kategori.html?cat=Güncel" class="nav-link">Güncel</a></li>
+                <li class="nav-item"><a href="kategori.html?cat=Yerel" class="nav-link">Yerel</a></li>
+                <li class="nav-item"><a href="kategori.html?cat=Siyaset" class="nav-link">Siyaset</a></li>
+                <li class="nav-item"><a href="kategori.html?cat=Ekonomi" class="nav-link">Ekonomi</a></li>
+                <li class="nav-item"><a href="kategori.html?cat=Spor" class="nav-link">Spor</a></li>
+                <li class="nav-item"><a href="kategori.html?cat=Eğitim" class="nav-link">Eğitim</a></li>
+                <li class="nav-item"><a href="kategori.html?cat=Sağlık" class="nav-link">Sağlık</a></li>
+                <li class="nav-item"><a href="kategori.html?cat=Dünya" class="nav-link">Dünya</a></li>
             </ul>
         </div>
     </nav>
@@ -245,7 +245,7 @@
     <div class="footer-top">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col footer-about">
+                <div class="footer-col footer-about" id="footer-about">
                     <div class="footer-logo">
                         <span class="logo-icon" style="width:42px;height:42px;font-size:18px;"><i class="fa-solid fa-newspaper"></i></span>
                         <div class="logo-text">
@@ -255,37 +255,48 @@
                     </div>
                     <p>Mersin Manşet ile gelişmeleri anında öğrenin! Mersin ve ilçelerinden son dakika haberler.</p>
                     <div class="footer-social">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://facebook.com/mersinmanset" target="_blank" id="footer-fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://x.com/mersinmanset" target="_blank" id="footer-tw" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://youtube.com/@mersinmanset" target="_blank" id="footer-yt" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://instagram.com/mersinmanset" target="_blank" id="footer-ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" id="footer-cats">
                     <h4>Kategoriler</h4>
                     <ul>
-                        <li><a href="index.html#section-guncel">Güncel</a></li>
-                        <li><a href="index.html#section-guncel">Yerel</a></li>
-                        <li><a href="index.html#section-guncel">Siyaset</a></li>
-                        <li><a href="index.html#section-ekonomi">Ekonomi</a></li>
-                        <li><a href="index.html#section-spor">Spor</a></li>
-                        <li><a href="index.html#section-egitim-saglik">Sağlık</a></li>
+                        <li><a href="kategori.html?cat=Güncel" id="fcat-guncel">Güncel</a></li>
+                        <li><a href="kategori.html?cat=Yerel" id="fcat-yerel">Yerel</a></li>
+                        <li><a href="kategori.html?cat=Siyaset" id="fcat-siyaset">Siyaset</a></li>
+                        <li><a href="kategori.html?cat=Ekonomi" id="fcat-ekonomi">Ekonomi</a></li>
+                        <li><a href="kategori.html?cat=Spor" id="fcat-spor">Spor</a></li>
+                        <li><a href="kategori.html?cat=Sağlık" id="fcat-saglik">Sağlık</a></li>
+                        <li><a href="kategori.html?cat=Eğitim" id="fcat-egitim">Eğitim</a></li>
+                        <li><a href="kategori.html?cat=Teknoloji" id="fcat-teknoloji">Teknoloji</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col" id="footer-ilceler">
+                    <h4>İlçer</h4>
+                    <ul>
+                        <li><a href="kategori.html?cat=Yerel&ilce=Akdeniz" id="filce-akdeniz">Akdeniz</a></li>
+                        <li><a href="kategori.html?cat=Yerel&ilce=Mezitli" id="filce-mezitli">Mezitli</a></li>
+                        <li><a href="kategori.html?cat=Yerel&ilce=Toroslar" id="filce-toroslar">Toroslar</a></li>
+                        <li><a href="kategori.html?cat=Yerel&ilce=Tarsus" id="filce-tarsus">Tarsus</a></li>
+                        <li><a href="kategori.html?cat=Yerel&ilce=Silifke" id="filce-silifke">Silifke</a></li>
+                        <li><a href="kategori.html?cat=Yerel&ilce=Erdemli" id="filce-erdemli">Erdemli</a></li>
+                        <li><a href="kategori.html?cat=Yerel&ilce=Anamur" id="filce-anamur">Anamur</a></li>
+                        <li><a href="kategori.html?cat=Yerel&ilce=Mut" id="filce-mut">Mut</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col" id="footer-kurumsal">
                     <h4>Kurumsal</h4>
                     <ul>
-                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
-                        <li><a href="iletisim.html">İletişim</a></li>
-                        <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
-                        <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>İletişim</h4>
-                    <ul>
-                        <li><a href="mailto:info@mersinsondakika.com"><i class="fa-solid fa-envelope"></i> E-posta</a></li>
-                        <li><a href="#"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="hakkimizda.html" id="fkur-hakkimizda">Hakkımızda</a></li>
+                        <li><a href="iletisim.html" id="fkur-iletisim">İletişim</a></li>
+                        <li><a href="gizlilik.html" id="fkur-gizlilik">Gizlilik Politikası</a></li>
+                        <li><a href="kullanim-kosullari.html" id="fkur-kullanim">Kullanım Koşulları</a></li>
+                        <li><a href="iletisim.html" id="fkur-reklam">Reklam</a></li>
+                        <li><a href="sitemap.xml" id="fkur-rss">Site Haritası</a></li>
+                        <li><a href="sitemap.xml" id="fkur-sitemap">Sitemap XML</a></li>
                     </ul>
                 </div>
             </div>
@@ -295,7 +306,7 @@
         <div class="container">
             <div class="footer-bottom-inner">
                 <p>&copy; <span id="footerYear"></span> Mersin Manşet. Tüm hakları saklıdır.</p>
-                <p>Mersin Manşet ® | <a href="iletisim.html">İletişim</a></p>
+                <p>Mersin Manşet ® | <a href="iletisim.html" id="footer-iletisim">İletişim</a></p>
             </div>
         </div>
     </div>

@@ -18,13 +18,12 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <link rel="stylesheet" href="style.css" />
-    <meta name="google-adsense-account" content="ca-pub-9510277093258194">
 </head>
 <body>
 
@@ -74,11 +73,7 @@
                         <span class="logo-sub">MANŞET</span>
                     </div>
                 </a>
-                <div class="logo-bar-center">
-                    <div class="header-ad">
-                        <span>Reklam Alanı</span>
-                    </div>
-                </div>
+
                 <div class="search-box">
                     <input type="text" id="search-input" placeholder="Haber ara..." aria-label="Haber ara" />
                     <button id="search-btn" aria-label="Ara"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -142,39 +137,14 @@
                         <span>Haberler</span>
                     </h1>
 
-                    <!-- Reklam Slotu 1: Kategori Tepe Reklamı -->
-                    <div class="ad-container-horizontal" style="margin-bottom: 24px; padding: 15px; background: #f9f9f9; border: 1px dashed #ddd; text-align: center; font-size: 13px; color: #777;">
-                        <span>Google AdSense - Kategori Tepe Reklamı</span>
-                        <div style="margin-top: 5px;">
-                            <!-- AdSense Reklam Kodu Buraya -->
-                            <ins class="adsbygoogle"
-                                 style="display:block"
-                                 data-ad-client="ca-pub-9510277093258194"
-                                 data-ad-slot="9876543210"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
-                            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                        </div>
-                    </div>
+
 
                     <!-- Haber Kartları Listesi -->
                     <div id="category-news-list" class="news-list" style="display: flex; flex-direction: column; gap: 20px;">
                         <p style="color: #777; font-style: italic;">Haberler yükleniyor...</p>
                     </div>
 
-                    <!-- Reklam Slotu 2: Kategori Alt Reklamı -->
-                    <div class="ad-container-horizontal" style="margin-top: 24px; padding: 15px; background: #f9f9f9; border: 1px dashed #ddd; text-align: center; font-size: 13px; color: #777;">
-                        <span>Google AdSense - Kategori Alt Reklamı</span>
-                        <div style="margin-top: 5px;">
-                            <ins class="adsbygoogle"
-                                 style="display:block"
-                                 data-ad-client="ca-pub-9510277093258194"
-                                 data-ad-slot="9876543211"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
-                            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
@@ -197,19 +167,7 @@
                     </div>
                 </div>
 
-                <!-- Reklam Slotu 3: Sağ Sidebar Reklamı -->
-                <div class="sidebar-widget" style="padding: 15px; background: #f9f9f9; border: 1px dashed #ddd; text-align: center; font-size: 13px; color: #777;">
-                    <span>Google AdSense - Sidebar Reklamı</span>
-                    <div style="margin-top: 10px;">
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-9510277093258194"
-                             data-ad-slot="9876543212"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                    </div>
-                </div>
+
 
                 <!-- DUYURULAR -->
                 <div class="sidebar-widget">
@@ -421,7 +379,7 @@
                     <div style="display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                             <span style="font-size: 11px; background: var(--primary-color, #c62828); color: white; padding: 2px 6px; border-radius: 2px; font-weight: 600; text-transform: uppercase;">${news.category}</span>
-                            <h3 style="margin-top: 8px; font-size: 18px; color: #222; font-family: 'Merriweather', serif; font-weight: 700; line-height: 1.4;">${news.title}</h3>
+                            <h3 style="margin-top: 8px; font-size: 18px; color: #222; font-family: var(--font-head); font-weight: 700; line-height: 1.4;">${news.title}</h3>
                             <p style="margin-top: 6px; font-size: 13px; color: #666; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${news.excerpt}</p>
                         </div>
                         <span style="font-size: 12px; color: #999; margin-top: 6px;"><i class="fa-regular fa-clock"></i> ${news.date}</span>

@@ -1569,3 +1569,221 @@ ul, ol {
 .cookie-btn:hover {
     background: #45a049;
 }
+
+/* === HABER DETAY SAYFASI (haber.html) STİLLERİ === */
+.breadcrumbs-container {
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+.breadcrumbs-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--gray-600);
+}
+
+.breadcrumbs-list li a {
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.breadcrumbs-list li a:hover {
+    color: var(--red);
+}
+
+.breadcrumbs-list li.active {
+    color: var(--text);
+    font-weight: 600;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.article-detail-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 32px;
+    margin-bottom: 28px;
+}
+
+.article-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.article-badge {
+    background: var(--red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.article-badge.cat-guncel { background: var(--red); }
+.article-badge.cat-yerel { background: var(--red); }
+.article-badge.cat-siyaset { background: var(--red); }
+.article-badge.cat-ekonomi { background: var(--blue); }
+.article-badge.cat-spor { background: var(--green); }
+.article-badge.cat-egitim { background: var(--purple); }
+.article-badge.cat-saglik { background: var(--teal); }
+.article-badge.cat-dunya { background: var(--orange); }
+
+.article-time {
+    font-size: 12.5px;
+    color: var(--gray-600);
+}
+
+.article-main-title {
+    font-family: var(--font-head);
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: var(--text);
+    margin-bottom: 24px;
+}
+
+.article-image-wrap {
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 24px;
+    aspect-ratio: 16/9;
+}
+
+.article-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.article-body-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.article-body-content p {
+    margin-bottom: 20px;
+}
+
+/* Reklam Slotları */
+.ad-slot {
+    background: #f4f4f6;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-400);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 20px 0;
+}
+
+.ad-slot-horizontal {
+    height: 90px;
+    width: 100%;
+}
+
+.ad-slot-sidebar {
+    height: 250px;
+    width: 100%;
+}
+
+/* Sosyal Medya Paylaşım */
+.article-share-bar {
+    border-top: 1px solid var(--gray-200);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.article-share-bar h4 {
+    font-size: 14px;
+    color: var(--text);
+}
+
+.share-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-share {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    transition: opacity var(--transition);
+}
+
+.btn-share:hover {
+    opacity: 0.9;
+}
+
+.btn-share.fb { background: #1877f2; }
+.btn-share.tw { background: #000000; }
+.btn-share.wa { background: #25d366; }
+
+/* Benzer Haberler */
+.related-news-section {
+    margin-top: 40px;
+}
+
+.related-title {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--red);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 900px) {
+    .article-detail-card {
+        padding: 24px;
+    }
+    .article-main-title {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .breadcrumbs-list li.active {
+        max-width: 180px;
+    }
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+    .article-share-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

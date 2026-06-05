@@ -358,18 +358,40 @@
         }
       }
 
-      // Haberleri LocalStorage'dan oku ve listele
-      function loadArticles() {
+      // Haberleri API ve LocalStorage'dan ortaklaşa oku ve listele
+      async function loadArticles() {
         articlesList.innerHTML = '';
-        const news = JSON.parse(localStorage.getItem('local_news') || '[]');
+        let apiNews = [];
         
-        if (news.length === 0) {
+        try {
+          const response = await fetch('/api/news');
+          const result = await response.json();
+          if (result.success && Array.isArray(result.data)) {
+            apiNews = result.data;
+          }
+        } catch (e) {
+          console.warn('API\'den haber listesi çekilemedi, lokal veri kullanılacak:', e);
+        }
+
+        const localNews = JSON.parse(localStorage.getItem('local_news') || '[]');
+        
+        // İki listeyi birleştir (id'si mükerrer olanları filtreleyerek)
+        const allNews = [...apiNews];
+        localNews.forEach(localItem => {
+          if (!allNews.some(item => item.id === localItem.id)) {
+            allNews.push(localItem);
+          }
+        });
+
+        if (allNews.length === 0) {
           articlesList.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Henüz eklenmiş haber bulunmuyor.</td></tr>`;
           return;
         }
 
-        news.reverse().forEach((item, index) => {
+        // En yeni haber üstte görünecek şekilde sırala
+        allNews.reverse().forEach((item) => {
           const tr = document.createElement('tr');
+          const isSystemNews = ['1', '2', '3', '4', '5', '6'].includes(item.id);
           tr.innerHTML = `
             <td>${item.date}</td>
             <td style="font-weight: 600;">${item.title}</td>
@@ -381,9 +403,12 @@
               </span>
             </td>
             <td>
-              <button onclick="deleteArticle(${news.length - 1 - index})" style="background:none; border:none; color:var(--primary); cursor:pointer;" title="Haberi Sil">
-                <i class="fa-solid fa-trash-can"></i>
-              </button>
+              ${isSystemNews ? 
+                `<span style="color:var(--text-muted); font-size:11px;">Sistem Haberi</span>` : 
+                `<button onclick="deleteArticle('${item.id}')" style="background:none; border:none; color:var(--primary); cursor:pointer;" title="Haberi Sil">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>`
+              }
             </td>
           `;
           articlesList.appendChild(tr);
@@ -391,12 +416,28 @@
       }
 
       // Haber silme
-      window.deleteArticle = function(index) {
+      window.deleteArticle = async function(id) {
+        // Önce API'den silmeyi dene
+        let deletedFromApi = false;
+        try {
+          const response = await fetch(`/api/news?id=${id}`, {
+            method: 'DELETE'
+          });
+          const result = await response.json();
+          if (result.success) {
+            deletedFromApi = true;
+          }
+        } catch (e) {
+          console.warn('API\'den silme işlemi başarısız, lokal hafızadan silinecek:', e);
+        }
+
+        // LocalStorage'dan da temizle (her iki tarafta da varsa)
         const news = JSON.parse(localStorage.getItem('local_news') || '[]');
-        news.splice(index, 1);
-        localStorage.setItem('local_news', JSON.stringify(news));
+        const filtered = news.filter(item => item.id !== id);
+        localStorage.setItem('local_news', JSON.stringify(filtered));
+
         loadArticles();
-        showToast('Haber başarıyla silindi!');
+        showToast(deletedFromApi ? 'Haber başarıyla veritabanından silindi!' : 'Haber yerel tarayıcı hafızasından silindi!');
       };
 
       // Form Gönderme
@@ -413,12 +454,13 @@
         const image = uploadedImageBase64 || 'images/hero.png';
 
         const newArticle = {
+          id: Date.now().toString(),
           title,
           category,
           image,
           excerpt,
           content,
-          date: new Date().toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+          date: new Date().toLocaleString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
           fbPosted: false
         };
 
@@ -442,23 +484,44 @@
             
             if (result.success) {
               newArticle.fbPosted = true;
-              showToast('Haber sitede yayınlandı ve Facebook\'ta paylaşıldı! 🎉');
+              showToast('Facebook paylaşımı yapıldı!');
             } else {
               newArticle.fbPosted = false;
-              showToast(result.message || 'Haber yayınlandı. Facebook jetonu eksik olduğundan paylaşım simüle edildi.', false);
+              showToast(result.message || 'Facebook jetonu eksik olduğundan paylaşım simüle edildi.', false);
             }
           } catch (err) {
             newArticle.fbPosted = false;
-            showToast('Bağlantı hatası: Haber sitenizde yayına girdi ancak Facebook\'a gönderilemedi.', false);
+            showToast('Facebook bağlantı hatası oluştu.', false);
           }
-        } else {
-          showToast('Haber sitede yayınlandı (Facebook paylaşımı kapalı).');
         }
 
-        // LocalStorage'a Kaydet
-        const news = JSON.parse(localStorage.getItem('local_news') || '[]');
-        news.push(newArticle);
-        localStorage.setItem('local_news', JSON.stringify(news));
+        // API (KV) veritabanına kaydet
+        let savedToApi = false;
+        try {
+          const apiResponse = await fetch('/api/news', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newArticle)
+          });
+          const apiResult = await apiResponse.json();
+          if (apiResult.success) {
+            savedToApi = true;
+          }
+        } catch (e) {
+          console.warn('API kaydı başarısız, lokale yazılacak:', e);
+        }
+
+        // API'ye yazılmadıysa local storage fallback kullan
+        if (!savedToApi) {
+          const news = JSON.parse(localStorage.getItem('local_news') || '[]');
+          news.push(newArticle);
+          localStorage.setItem('local_news', JSON.stringify(news));
+          showToast('Bağlantı/KV yok: Haber tarayıcı hafızasına (Local) kaydedildi.', false);
+        } else {
+          showToast('Haber başarıyla veritabanında yayınlandı! 🎉');
+        }
 
         // Formu temizle, görseli sıfırla ve listeyi yenile
         newsForm.reset();
